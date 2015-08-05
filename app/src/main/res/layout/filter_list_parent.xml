@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_filter_list_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@drawable/filter_listview_selector"
+    >
+
+    <com.fashion.krish.customview.AutoFitTextView
+        android:id="@+id/text1"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor = "@drawable/popup_text_color"
+        android:layout_centerVertical="true"
+        android:textStyle="bold"
+        android:singleLine="true" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ED4B82"/>
+
+
+
+</RelativeLayout>

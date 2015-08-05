@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
+
+    defaultConfig {
+        applicationId "com.fashion.krish.fashion"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+
+    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/anim'] } }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:support-v13:+'
+    compile 'com.google.android.gms:play-services:7.5.0'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+    compile 'com.jpardogo.materialtabstrip:library:1.1.0'
+    compile files('libs/svg-android-1.1.jar')
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.afollestad:material-dialogs:0.7.6.0'
+    compile 'com.viewpagerindicator:library:2.4.1@aar'
+    compile('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
+        exclude module: 'support-v4'
+    }
+    compile 'com.github.liuguangqiang.swipeback:library:1.0.2@aar'
+    compile project(':MaterialLib')
+    compile project(':CropLib')
+
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_expandable_base"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center_vertical"
+    >
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="5dp"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_white"
+        android:layout_marginRight="10dp"
+        android:visibility="invisible"/>
+
+    <com.fashion.krish.customview.TintableImageView
+        android:id="@+id/img_category"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        app:tint="@drawable/select_gray_white"
+        android:layout_toRightOf="@+id/divider"
+        android:src="@android:drawable/ic_menu_search"/>
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginRight="75dp"
+        android:text="TextView"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:textSize="18sp"
+        android:layout_toRightOf="@+id/img_category"
+        android:layout_marginLeft="5dp"
+        android:textColor="@drawable/select_gray_white"/>
+
+    <ImageView
+        android:id="@+id/img_indicator"
+        android:src="@drawable/arrow_side"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:padding="10dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="25dp"
+        />
+
+</RelativeLayout>
+

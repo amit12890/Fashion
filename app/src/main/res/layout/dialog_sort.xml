@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+   >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:text="Sort By"
+        android:gravity="center_vertical"
+        android:layout_margin="10dp"
+        android:textSize="20sp"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/drawer_pressed"/>
+
+    <LinearLayout
+        android:id="@+id/dialog_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:text="Position"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/ic_tick"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:visibility="gone"
+            android:background="@color/drawer_default_gray"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

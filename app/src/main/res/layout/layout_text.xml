@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button Shape"
+        android:visibility="gone"
+        />
+
+    <com.rey.material.widget.EditText
+        style="@style/Material.Widget.EditText.Light"
+        android:id="@+id/edt_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        app:et_supportMode="charCounter"
+        app:et_dividerColor="#7B1FA2"
+        app:et_dividerHeight="1dp"
+        app:et_labelTextColor="#000000"
+        app:et_supportMaxChars="20"
+        app:et_supportTextErrorColor="#ff0000"/>
+
+    <TextView
+        android:id="@+id/txt_text_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="#ff0000"
+        android:visibility="gone"
+        android:text="This is a required field"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="#cccccc"/>
+
+</LinearLayout>

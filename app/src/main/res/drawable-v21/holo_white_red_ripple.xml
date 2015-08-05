@@ -1,0 +1,6 @@
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/transparent_red"> <!-- ripple color -->
+
+    <item android:drawable="@color/drawer_default_white"/> <!-- normal color -->
+
+</ripple>

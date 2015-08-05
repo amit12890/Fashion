@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_login_main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:scrollbars="none"
+    android:padding="10dp"
+    android:overScrollMode="never">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/background_card"
+            android:paddingTop="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="30dp"
+            >
+
+            <com.rey.material.widget.EditText
+                style="@style/Material.Widget.EditText.Light"
+                android:id="@+id/edt_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:inputType="textEmailAddress"
+                android:hint="Email"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_supportMode="helper"
+                app:et_supportTextErrorColor="#D32F2F"
+                app:et_helper="This is required"
+                app:et_supportTextColor="#D32F2F"
+                app:et_dividerColor="#7B1FA2"
+                app:et_labelTextSize="16sp"
+                app:et_dividerHeight="1dp"
+                app:et_dividerErrorColor="#D32F2F"/>
+
+            <com.rey.material.widget.EditText
+                style="@style/Material.Widget.EditText.Light"
+                android:id="@+id/edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:inputType="textPassword"
+                android:hint="Password"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_supportMode="helper"
+                app:et_supportTextErrorColor="#D32F2F"
+                app:et_helper="This is required"
+                app:et_supportTextColor="#D32F2F"
+                app:et_dividerColor="#7B1FA2"
+                app:et_labelTextSize="16sp"
+                app:et_dividerHeight="1dp"
+                app:et_dividerErrorColor="#D32F2F"
+                android:layout_marginTop="25dp" />
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="#FFFFFFFF"
+                android:textSize="16sp"
+                android:background="@drawable/button_red_white_ripple"
+                android:text="@string/login"
+                android:textAllCaps="false"
+                android:translationZ="2dp"
+                android:layout_marginTop="40dp"
+                android:elevation="1dp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_social_login"
+                android:text="Or Log in using"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_centerHorizontal="true"/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2px"
+                android:layout_toRightOf="@+id/txt_social_login"
+                android:background="#333333"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2px"
+                android:layout_toLeftOf="@+id/txt_social_login"
+                android:background="#333333"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/facebook_icon"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:text="Facebook"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/twitter_icon"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:text="Twitter"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/gplus_icon"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="75dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Google"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center_horizontal"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</ScrollView>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_register_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="40dp"
+    android:scrollbars="none"
+    android:padding="10dp"
+    android:overScrollMode="never"
+    >
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="30dp"
+            android:background="@drawable/background_card"
+        >
+
+            <com.rey.material.widget.EditText
+                style="@style/Material.Widget.EditText.Light"
+                android:id="@+id/edt_fname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:inputType="textPersonName"
+                android:hint="First Name"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_supportMode="helper"
+                app:et_supportTextErrorColor="#D32F2F"
+                app:et_helper="This is required"
+                app:et_supportTextColor="#D32F2F"
+                app:et_dividerColor="#7B1FA2"
+                app:et_labelTextSize="16sp"
+                app:et_dividerHeight="1dp"
+                app:et_dividerErrorColor="#D32F2F"/>
+
+            <com.rey.material.widget.EditText
+                style="@style/Material.Widget.EditText.Light"
+                android:id="@+id/edt_lname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:inputType="textPersonName"
+                android:hint="Last Name"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_supportMode="helper"
+                app:et_supportTextErrorColor="#D32F2F"
+                app:et_helper="This is required"
+                app:et_supportTextColor="#D32F2F"
+                app:et_dividerColor="#7B1FA2"
+                app:et_labelTextSize="16sp"
+                app:et_dividerHeight="1dp"
+                app:et_dividerErrorColor="#D32F2F"
+                android:layout_marginTop="25dp" />
+
+            <com.rey.material.widget.EditText
+                style="@style/Material.Widget.EditText.Light"
+                android:id="@+id/edt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:inputType="textEmailAddress"
+                android:hint="Email"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_supportMode="helper"
+                app:et_supportTextErrorColor="#D32F2F"
+                app:et_helper="This is required"
+                app:et_supportTextColor="#D32F2F"
+                app:et_dividerColor="#7B1FA2"
+                app:et_labelTextSize="16sp"
+                app:et_dividerHeight="1dp"
+                app:et_dividerErrorColor="#D32F2F"
+                android:layout_marginTop="25dp" />
+
+            <com.rey.material.widget.EditText
+                style="@style/Material.Widget.EditText.Light"
+                android:id="@+id/edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:inputType="textPassword"
+                android:hint="Password"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_supportMode="helper"
+                app:et_supportTextErrorColor="#D32F2F"
+                app:et_helper="This is required"
+                app:et_supportTextColor="#D32F2F"
+                app:et_dividerColor="#7B1FA2"
+                app:et_labelTextSize="16sp"
+                app:et_dividerHeight="1dp"
+                app:et_dividerErrorColor="#D32F2F"
+                android:layout_marginTop="25dp" />
+
+            <com.rey.material.widget.EditText
+                style="@style/Material.Widget.EditText.Light"
+                android:id="@+id/edt_cpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:inputType="textPassword"
+                android:hint="Confirm Password"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_supportMode="helper"
+                app:et_supportTextErrorColor="#D32F2F"
+                app:et_helper="This is required"
+                app:et_supportTextColor="#D32F2F"
+                app:et_dividerColor="#7B1FA2"
+                app:et_labelTextSize="16sp"
+                app:et_dividerHeight="1dp"
+                app:et_dividerErrorColor="#D32F2F"
+                android:layout_marginTop="25dp" />
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="#FFFFFFFF"
+                android:textSize="16sp"
+                android:background="@drawable/button_red_white_ripple"
+                android:text="@string/register"
+                android:textAllCaps="false"
+                android:layout_marginTop="40dp" />
+
+        </LinearLayout>
+
+</ScrollView>

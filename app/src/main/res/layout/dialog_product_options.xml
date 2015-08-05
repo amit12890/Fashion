@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_dialog_title"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:text="Choose Option"
+        android:gravity="center_vertical"
+        android:textColor="@color/drawer_default_white"
+        android:textStyle="bold"
+        android:background="@color/drawer_pressed"
+        android:padding="10dp"
+        android:textSize="20sp"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/drawer_pressed"/>
+
+    <ScrollView
+        android:id="@+id/dialog_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_below="@+id/txt_dialog_title">
+
+        <LinearLayout
+            android:id="@+id/dialog_container"
+            android:orientation="vertical"
+            android:layout_marginTop="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"
+        >
+        <Button
+            android:id="@+id/btn_dlg_add_to_cart"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/drawer_default_white"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/button_red_white_ripple"
+            android:text="Add to cart"/>
+
+        <Button
+            android:id="@+id/btn_dlg_close"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/text_normal"
+            android:layout_toLeftOf="@+id/btn_dlg_add_to_cart"
+            android:background="@drawable/holo_white_red_ripple"
+            android:text="Close"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

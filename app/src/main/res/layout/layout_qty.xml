@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lay_qty"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/txt_radio_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button Shape"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:id="@+id/lay_qty_selection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_qty"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="QTY :"
+            android:layout_centerVertical="true"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_qty"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/txt_qty"
+            android:background="@drawable/black_rounded_rect"/>
+
+        <RelativeLayout
+            android:id="@+id/zoomControl1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/black_rounded_rect"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true">
+
+            <ZoomButton
+                android:id="@+id/zoomOut"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/minus" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_toRightOf="@+id/zoomOut"
+                android:background="#000000">
+
+            </View>
+            <ZoomButton
+                android:id="@+id/zoomIn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="11dp"
+                android:layout_toRightOf="@+id/zoomOut"
+                android:background="@drawable/plus" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/txt_radio_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="This is a required field"
+        android:textColor="#ff0000"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="#cccccc"
+        android:visibility="gone"/>
+
+</LinearLayout>

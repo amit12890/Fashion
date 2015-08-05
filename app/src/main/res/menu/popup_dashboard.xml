@@ -1,0 +1,46 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".DashboardActivity">
+
+    <item android:id="@+id/action_account_info"
+        android:title="@string/action_account_info"
+        android:showAsAction="never" />
+
+    <item android:id="@+id/action_wishlist"
+        android:title="@string/action_wishlist"
+        android:showAsAction="never" />
+
+    <item android:id="@+id/action_orders"
+        android:title="@string/action_orders"
+        android:showAsAction="never" />
+
+    <item android:id="@+id/action_address"
+        android:title="@string/action_my_address"
+        android:showAsAction="never" />
+
+    <item android:id="@+id/action_login"
+        android:title="@string/action_login"
+        android:icon="@drawable/right_login_icon"
+        android:showAsAction="never" />
+
+    <item android:id="@+id/action_shopping_cart"
+        android:title="@string/action_shopping_cart"
+        android:showAsAction="never" />
+
+    <item android:id="@+id/action_share_app"
+        android:title="@string/action_share_app"
+        android:showAsAction="never" />
+
+    <item android:id="@+id/action_policy"
+        android:title="@string/action_policy"
+        android:showAsAction="never" />
+
+    <item android:id="@+id/action_contact_us"
+        android:title="@string/action_contact_us"
+        android:showAsAction="never" />
+
+    <item android:id="@+id/action_log_out"
+        android:title="@string/action_logout"
+        android:showAsAction="never" />
+
+</menu>

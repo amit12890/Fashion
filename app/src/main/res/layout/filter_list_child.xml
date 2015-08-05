@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:gravity="center_vertical"
+    >
+
+
+    <com.fashion.krish.customview.AutoFitTextView
+        android:id="@+id/text1"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor = "#212121"
+        android:layout_centerVertical="true"
+        android:singleLine="true" />
+
+    <com.rey.material.widget.RadioButton
+        style="@style/Material.Drawable.RadioButton"
+        android:id="@+id/radio_selection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        app:rbd_strokeColor="#7B1FA2"
+        android:checked="false"
+        android:enabled="false"
+        android:layout_marginRight="10dp"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="#EEEEEE"/>
+
+
+
+</RelativeLayout>

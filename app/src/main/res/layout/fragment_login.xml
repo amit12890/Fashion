@@ -1,0 +1,30 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <com.astuetz.PagerSlidingTabStrip
+            android:id="@+id/login_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="48dip"
+            android:background="@color/drawer_pressed"
+            app:pstsTabTextColor="@color/tab_text_color"
+            style="@style/PagerSlidingTabStripStyle"
+            />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/login_pager"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/login_tabs"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

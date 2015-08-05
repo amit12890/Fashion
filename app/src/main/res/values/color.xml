@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="actionbar_color">#7B1FA2</color>
+    <color name="drawer_arrow_second_color">#FAF291</color>
+
+    <color name="drawer_default_white">#ffffff</color>
+    <color name="transparent_white">#99ffffff</color>
+    <color name="drawer_default_gray">#eaeaea</color>
+    <color name="drawer_default_darkgrey">#333333</color>
+    <color name="drawer_pressed">#E91E63</color>
+    <color name="transparent_red">#99E91E63</color>
+
+    <color name="text_normal">#333333</color>
+    <color name="text_selected">#ffffff</color>
+
+    <color name="footer_normal">#3D3B3F</color>
+    <color name="footer_selected">#000000</color>
+
+    <color name="primaryColor">#7B1FA2</color>
+    <color name="primaryColorDark">#806C2EAE</color>
+
+
+</resources>
