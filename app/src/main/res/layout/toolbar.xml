@@ -1,75 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_title"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="?attr/colorPrimary">
 
-
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:minHeight="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+    <RelativeLayout
+        android:id="@+id/lay_toggle_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    </android.support.v7.widget.Toolbar>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize" />
+
+
+        <ImageView
+            android:id="@+id/img_back_arrow"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:src="@drawable/back_arrow_icon"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/txt_filter_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/lay_toggle_button"
         android:text="@string/filter"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/toolbar"
-        android:textSize="20sp"
         android:textColor="@color/drawer_default_white"
-        android:visibility="gone"/>
+        android:textSize="20sp"
+        android:visibility="gone" />
 
-    <ImageView
+    <com.fashion.krish.customview.TintableImageView
         android:id="@+id/img_logo_title"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/toolbar"
-        android:layout_marginLeft="-10dp"
-        android:src="@drawable/logo"/>
+        android:layout_marginLeft="-15dp"
+        android:layout_toRightOf="@+id/lay_toggle_button"
+        android:padding="7dp"
+        android:src="@drawable/logo" />
 
     <LinearLayout
         android:id="@+id/lay_dashboard_items"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:gravity="center_vertical"
-        android:layout_alignParentRight="true">
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal">
 
-        <ImageView
+        <com.fashion.krish.customview.TintableImageView
             android:id="@+id/img_search"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/search_icon"
-            android:layout_gravity="center_vertical"
+
             />
 
-        <ImageView
-            android:id="@+id/img_cart"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/cart_icon"
-            android:layout_marginLeft="7dp"
+        <RelativeLayout
+            android:id="@+id/lay_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            />
+            android:layout_marginLeft="7dp">
+
+            <com.fashion.krish.customview.TintableImageView
+                android:id="@+id/img_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/notification_con" />
+
+            <RelativeLayout
+                android:id="@+id/lay_notification_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/img_notification"
+                android:layout_toRightOf="@+id/img_notification"
+                android:layout_marginLeft="-17dp"
+                android:layout_marginBottom="-15dp">
+
+                <com.fashion.krish.customview.CircleImageView
+                    android:id="@+id/img_notification_badge"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="#ffffff"
+                    app:border_overlay="true"
+                    app:border_width="0dp" />
+
+                <TextView
+                    android:id="@+id/txt_notification_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="12"
+                    android:textColor="@color/actionbar_color"
+                    android:textSize="10sp" />
 
 
-        <ImageView
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lay_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp">
+
+            <com.fashion.krish.customview.TintableImageView
+                android:id="@+id/img_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/cart_icon" />
+
+            <RelativeLayout
+                android:id="@+id/lay_cart_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/img_cart"
+                android:layout_toRightOf="@+id/img_cart"
+                android:layout_marginLeft="-17dp"
+                android:layout_marginBottom="-15dp">
+
+                <com.fashion.krish.customview.CircleImageView
+                    android:id="@+id/img_cart_badge"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="#ffffff"
+                    app:border_overlay="true"
+                    app:border_width="0dp" />
+
+                <TextView
+                    android:id="@+id/txt_cart_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="12"
+                    android:textColor="@color/actionbar_color"
+                    android:textSize="10sp" />
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+        <com.fashion.krish.customview.TintableImageView
             android:id="@+id/img_overflow"
-            android:layout_width="30dp"
-            android:layout_height="35dp"
-            android:src="@drawable/right_nav_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            />
+            android:layout_marginLeft="7dp"
+            android:src="@drawable/right_nav_icon" />
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/delete_icon"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -77,41 +182,34 @@
         android:id="@+id/lay_filter_items"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
         android:visibility="gone">
 
-        <Button
+        <com.rey.material.widget.Button
             android:id="@+id/btn_clear_all"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:textColor="#FFFFFFFF"
-            android:textSize="14sp"
-            android:background="@drawable/button_purple_white_ripple"
+            android:elevation="5dp"
             android:text="@string/clear_all"
             android:textAllCaps="false"
-            />
+            android:textColor="#FFFFFFFF"
+            android:textSize="14sp" />
 
-        <Button
+        <com.rey.material.widget.Button
             android:id="@+id/btn_apply"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:textColor="#FFFFFFFF"
-            android:textSize="14sp"
-            android:background="@drawable/button_red_white_ripple"
+            android:layout_marginLeft="5dp"
             android:text="@string/apply"
             android:textAllCaps="false"
-            android:layout_marginLeft="5dp"
-            />
+            android:textColor="#FFFFFFFF"
+            android:textSize="14sp" />
 
 
     </LinearLayout>
-
-
-
-
 
 
 </RelativeLayout>

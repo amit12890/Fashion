@@ -3,18 +3,22 @@
     tools:context=".DashboardActivity">
 
     <item android:id="@+id/action_account_info"
+        android:icon="@drawable/right_acc_info_icon"
         android:title="@string/action_account_info"
         android:showAsAction="never" />
 
     <item android:id="@+id/action_wishlist"
+        android:icon="@drawable/right_wishlist_icon"
         android:title="@string/action_wishlist"
         android:showAsAction="never" />
 
     <item android:id="@+id/action_orders"
+        android:icon="@drawable/right_orders_icon"
         android:title="@string/action_orders"
         android:showAsAction="never" />
 
     <item android:id="@+id/action_address"
+        android:icon="@drawable/right_address_icon"
         android:title="@string/action_my_address"
         android:showAsAction="never" />
 
@@ -24,6 +28,7 @@
         android:showAsAction="never" />
 
     <item android:id="@+id/action_shopping_cart"
+        android:icon="@drawable/right_cart_icon"
         android:title="@string/action_shopping_cart"
         android:showAsAction="never" />
 
@@ -32,14 +37,17 @@
         android:showAsAction="never" />
 
     <item android:id="@+id/action_policy"
+        android:icon="@drawable/right_privacy_icon"
         android:title="@string/action_policy"
         android:showAsAction="never" />
 
     <item android:id="@+id/action_contact_us"
+        android:icon="@drawable/contact_icon"
         android:title="@string/action_contact_us"
         android:showAsAction="never" />
 
     <item android:id="@+id/action_log_out"
+        android:icon="@drawable/right_logout_icon"
         android:title="@string/action_logout"
         android:showAsAction="never" />
 

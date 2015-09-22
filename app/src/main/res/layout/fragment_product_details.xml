@@ -18,62 +18,141 @@
             android:layout_weight="0.5"
             android:orientation="horizontal">
 
-
-            <Button
-                android:id="@+id/btn_share"
+            <RelativeLayout
+                android:id="@+id/lay_bottom_share"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
                 android:background="#7B1FA2"
-                android:padding="5dp"
-                android:text="SHARE"
-                android:textColor="#ffffff" />
+                android:layout_weight="0.5">
 
+                <ImageView
+                    android:id="@+id/img_share"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/share_icon"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"/>
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#550079" />
+                <com.rey.material.widget.Button
+                    android:id="@+id/btn_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#00ffffff"
+                    android:text="SHARE"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:gravity="bottom|center_horizontal"
+                    android:paddingBottom="10dp"
+                    android:layout_alignParentBottom="true" />
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#A669C1" />
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="false"
+                    android:background="#4d000000"
+                    android:layout_alignParentRight="true" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#4d000000"
+                    android:layout_alignParentTop="true" />
 
-            <Button
-                android:id="@+id/btn_add_to_cart"
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lay_bottom_cart"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
                 android:background="#7B1FA2"
-                android:padding="5dp"
-                android:text="ADD TO CART"
-                android:textColor="#ffffff" />
+                android:layout_weight="0.5">
+
+                <ImageView
+                    android:id="@+id/img_add_to_cart"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/add_cart_icon"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"/>
+
+                <com.rey.material.widget.Button
+                    android:id="@+id/btn_add_to_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#00ffffff"
+                    android:text="ADD TO CART"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
+                    android:gravity="bottom|center_horizontal"
+                    android:paddingBottom="10dp"
+                    android:layout_alignParentBottom="true" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#33ffffff"
+                    android:layout_alignParentLeft="true" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#4d000000"
+                    android:layout_alignParentRight="true" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#4d000000"
+                    android:layout_alignParentTop="true" />
+
+            </RelativeLayout>
 
 
         </LinearLayout>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#550079" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#F06292" />
-
-        <Button
-            android:id="@+id/btn_buy_now"
+        <RelativeLayout
+            android:id="@+id/lay_bottom_buy"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="#E91E63"
-            android:drawablePadding="5dp"
-            android:padding="5dp"
-            android:text="BUY NOW"
-            android:textColor="#ffffff" />
+            android:layout_height="wrap_content"
+            android:background="@color/drawer_pressed"
+            android:layout_weight="0.5">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <ImageView
+                    android:id="@+id/img_buy"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/buy_now_icon"
+                    android:layout_marginTop="10dp"/>
+
+                <Button
+                    android:id="@+id/btn_buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00ffffff"
+                    android:layout_toRightOf="@+id/img_buy"
+                    android:text="BUY NOW"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#33ffffff"
+                android:layout_alignParentLeft="true" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#4d000000"
+                android:layout_alignParentTop="true" />
+
+        </RelativeLayout>
+
 
     </LinearLayout>
 
@@ -97,7 +176,7 @@
                 android:layout_marginLeft="5dp"
                 android:paddingBottom="15dp"
                 android:paddingTop="15dp"
-                android:src="@drawable/back_arrow" />
+                android:src="@drawable/back_arrow_icon" />
 
             <TextView
                 android:id="@+id/txt_title"
@@ -137,6 +216,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
+                android:visibility="visible"
                 android:background="@drawable/background_card">
 
                 <RelativeLayout
@@ -266,6 +346,11 @@
 
                 </RelativeLayout>
 
+                <ImageView
+                    android:id="@+id/img_product_tag"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_alignParentLeft="true"/>
 
             </RelativeLayout>
 
@@ -383,11 +468,10 @@
 
                 <com.astuetz.PagerSlidingTabStrip
                     android:id="@+id/product_details_tab"
-                    style="@style/PagerSlidingTabStripStyle"
                     android:layout_width="match_parent"
                     android:layout_height="48dip"
                     android:background="@color/drawer_pressed"
-                    app:pstsTabTextColor="@color/tab_text_color" />
+                    />
 
                 <view
                     android:id="@+id/product_details_pager"
@@ -398,6 +482,38 @@
 
             </RelativeLayout>
 
+            <LinearLayout
+                android:id="@+id/lay_related_products"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Related Products"
+                    android:textColor="#000000"
+                    android:textSize="16sp"/>
+
+                <HorizontalScrollView
+                    android:id="@+id/scroll_related_products"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/layout_product_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    </LinearLayout>
+
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
             <include
                 android:id="@+id/layout_footer"
                 layout="@layout/layout_social_footer"
@@ -405,9 +521,17 @@
                 android:layout_height="wrap_content" />
 
 
+
+
         </LinearLayout>
     </ScrollView>
 
+    <com.rey.material.widget.SnackBar
+        android:id="@+id/cart_snake_bar"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
 

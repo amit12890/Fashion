@@ -1,17 +1,40 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'com.google.gms.google-services'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 
 android {
+    signingConfigs {
+        Config {
+            keyAlias 'fashion'
+            keyPassword 'android'
+            storeFile file('E:/Projects/Keystore/debug.keystore')
+            storePassword 'android'
+        }
+    }
     compileSdkVersion 22
     buildToolsVersion '22.0.1'
-
     defaultConfig {
         applicationId "com.fashion.krish.fashion"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
-
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
         exclude 'META-INF/NOTICE'
@@ -19,18 +42,15 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
-
     sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/anim'] } }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:support-v13:+'
-    compile 'com.google.android.gms:play-services:7.5.0'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+    compile 'com.google.android.gms:play-services:7.8.0'
     compile 'com.jpardogo.materialtabstrip:library:1.1.0'
-    compile files('libs/svg-android-1.1.jar')
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.afollestad:material-dialogs:0.7.6.0'
     compile 'com.viewpagerindicator:library:2.4.1@aar'
     compile('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
@@ -39,5 +59,14 @@ dependencies {
     compile 'com.github.liuguangqiang.swipeback:library:1.0.2@aar'
     compile project(':MaterialLib')
     compile project(':CropLib')
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.1@aar') {
+        transitive = true;
+    }
+    compile 'com.facebook.android:facebook-android-sdk:4.1.0'
+    compile('com.twitter.sdk.android:twitter:1.7.1@aar') {
+        transitive = true;
+    }
+    compile files('libs/universal-image-loader-1.9.4.jar')
+    compile files('libs/svg-android-1.1.jar')
 
 }

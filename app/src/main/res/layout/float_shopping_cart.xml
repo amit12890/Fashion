@@ -1,0 +1,279 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_float_cart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.rey.material.widget.ProgressView
+        app:pv_progressStyle="@style/Material.Drawable.LinearProgress"
+        android:id="@+id/progress_linear"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:pv_circular="false"/>
+
+    <LinearLayout
+        android:id="@+id/lay_float_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:background="#000000">
+
+        <RelativeLayout
+            android:id="@+id/lay_subtotal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:background="@drawable/tags_rounded_corners">
+
+            <TextView
+                android:id="@+id/txt_subtotal_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subtotal"
+                android:textColor="@color/drawer_default_white"
+                android:layout_centerVertical="true"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/txt_subtotal_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$344.50"
+                android:textColor="@color/drawer_default_white"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lay_tax"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:padding="5dp"
+            android:background="@drawable/tags_rounded_corners">
+
+            <TextView
+                android:id="@+id/txt_tax_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tax"
+                android:textColor="@color/drawer_default_white"
+                android:layout_centerVertical="true"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/txt_tax_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$344.50"
+                android:textColor="@color/drawer_default_white"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lay_grand_total"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="5dp"
+            android:background="@drawable/tags_rounded_corners">
+
+            <TextView
+                android:id="@+id/txt_grand_total_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grand Total"
+                android:textColor="@color/drawer_default_white"
+                android:layout_centerVertical="true"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/txt_grand_total_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$344.50"
+                android:textColor="@color/drawer_default_white"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_chekout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:background="@drawable/tags_rounded_corners"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp">
+
+            <com.rey.material.widget.Button
+                android:id="@+id/btn_checkout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#FFFFFFFF"
+                android:background="#00ffffff"
+                android:textSize="14sp"
+                android:text="Checkout Now"
+                android:textAllCaps="true"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/float_cart_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:overScrollMode="never"
+        android:layout_above="@+id/lay_float_bottom"
+        android:layout_below="@+id/progress_linear"
+        android:isScrollContainer="false"
+        android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/lay_float_product_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"/>
+
+            <LinearLayout
+                android:id="@+id/lay_discount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/lay_discount_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:src="@drawable/ic_discount"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Discounts Code"
+                        android:layout_marginLeft="40dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="16sp"/>
+
+                    <ImageView
+                        android:id="@+id/img_discount_arrow"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_arrow"/>
+
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e5e5e5"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="5dp"/>
+
+                <LinearLayout
+                    android:id="@+id/lay_discount_child"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                    <com.rey.material.widget.EditText
+                        android:id="@+id/edt_discount"
+                        style="@style/Material.Widget.EditText.Light"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter your coupon code"
+                        app:et_dividerColor="#7B1FA2"
+                        app:et_dividerErrorColor="#D32F2F"
+                        app:et_dividerHeight="1dp"
+                        app:et_labelTextColor="#7B1FA2"
+                        app:et_labelTextSize="16sp"
+                        app:et_supportMode="helper"
+                        app:et_helper="This is required"
+                        app:et_supportTextColor="#D32F2F"
+                        app:et_supportTextErrorColor="#D32F2F" />
+
+                    <RelativeLayout
+                        android:id="@+id/lay_discount_applied"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+                        
+                        <TextView
+                            android:id="@+id/txt_discount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$5120"
+                            android:layout_alignParentRight="true"/>
+
+                        <TextView
+                            android:id="@+id/txt_discount_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxWidth="250dp"
+                            android:text="Disount"/>
+                        
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_apply_coupon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/tags_rounded_corners">
+
+                        <com.rey.material.widget.Button
+                            android:id="@+id/btn_apply_coupon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:padding="5dp"
+                            android:background="#00ffffff"
+                            android:textColor="#ffffff"
+                            android:text="Apply Coupon"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

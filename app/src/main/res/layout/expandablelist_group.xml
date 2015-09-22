@@ -18,12 +18,13 @@
 
     <com.fashion.krish.customview.TintableImageView
         android:id="@+id/img_category"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_centerVertical="true"
         app:tint="@drawable/select_gray_white"
         android:layout_toRightOf="@+id/divider"
         android:src="@android:drawable/ic_menu_search"/>
+
 
     <TextView
         android:id="@+id/text1"

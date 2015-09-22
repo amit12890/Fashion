@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.text.Html;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.fashion.krish.AppController;
 import com.fashion.krish.R;
 import com.fashion.krish.model.Category;
 import com.fashion.krish.model.SubCategory;
@@ -69,7 +71,7 @@ public class CategoryListAdapter extends BaseExpandableListAdapter {
             view = infalInflater.inflate(CHILD_ITEM_RESOURCE, null);
             ViewHolder holder = new ViewHolder(view);
             holder.text.setText(Html.fromHtml(subCategory.label));
-
+            holder.divider.setBackgroundColor(Color.parseColor(AppController.PRIMARY_COLOR));
             if(subCategory.is_selected){
                 holder.divider.setVisibility(View.VISIBLE);
 
@@ -114,8 +116,9 @@ public class CategoryListAdapter extends BaseExpandableListAdapter {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        holder.layBase.setBackgroundResource(R.drawable.holo_red_white_ripple);
+                        holder.layBase.setBackgroundColor(Color.parseColor(AppController.SECONDARY_COLOR));
                         holder.text.setTextColor(Color.WHITE);
+                        holder.categoryicon.setColorFilter(Color.WHITE);
                     }
                 }, 100);
 
@@ -127,32 +130,43 @@ public class CategoryListAdapter extends BaseExpandableListAdapter {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        holder.layBase.setBackgroundResource(R.drawable.holo_white_red_ripple);
+                        holder.layBase.setBackgroundColor(Color.TRANSPARENT);
                         holder.text.setTextColor(Color.parseColor("#333333"));
+                        holder.categoryicon.setColorFilter(Color.parseColor("#333333"));
                     }
                 }, 400);
-
-
-
-                //holder.layBase.setBackgroundColor(Color.parseColor("#ffffff"));
-                //holder.text.setTextColor(Color.parseColor("#333333"));
             }
 
 
             holder.text.setText(Html.fromHtml(category.label));
-            holder.categoryicon.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-            SVG svg = SVGParser.getSVGFromResource(activity.getResources(), R.raw.men_menu_icon,  0xFF9FBF3B, 0xFF1756c9);
-             //svg.setDocumentHeight(Utility.convertDpToPixel(20,activity));
-             //svg.setDocumentWidth(Utility.convertDpToPixel(20,activity));
-             //svg.setRenderDPI(15);
+            //holder.categoryicon.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            //SVG svg = SVGParser.getSVGFromResource(activity.getResources(), R.raw.men_menu_icon,  0xFF9FBF3B, 0xFF1756c9);
 
+            //holder.categoryicon.setImageDrawable(svg.createPictureDrawable());
 
-            holder.categoryicon.setImageDrawable(svg.createPictureDrawable());
+            imageLoader.displayImage(category.icon,holder.categoryicon,options);
+            holder.categoryicon.setColorFilter(Color.parseColor("#333333"));
 
-            //imageLoader.displayImage("http://coupcommerce.magentoprojects.net/media/catalog/category/men-menu-icon.svg",holder.categoryicon,options);
             if(category.subCategories.size()==0){
                 holder.imageview.setVisibility(View.INVISIBLE);
             }
+
+            holder.layBase.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        v.setBackgroundColor(Color.TRANSPARENT);
+                        holder.text.setTextColor(Color.parseColor("#333333"));
+                        holder.categoryicon.setColorFilter(Color.parseColor("#333333"));
+                    } else if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                        v.setBackgroundColor(Color.parseColor(AppController.SECONDARY_COLOR));
+                        holder.categoryicon.setColorFilter(Color.WHITE);
+                        holder.text.setTextColor(Color.WHITE);
+                    }
+                    return false;
+                }
+            });
+
 
         }
         return view;

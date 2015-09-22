@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.fashion.krish.customview.SlidingRelativeLayout
+    android:id="@+id/lay_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_below="@+id/lay_title"
+        android:id="@+id/layout_register_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:padding="10dp"
+        android:scrollbars="none">
+
+       <LinearLayout
+           android:id="@+id/lay_myaccount_child_container"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:background="@drawable/background_card"
+               android:padding="10dp"
+               android:visibility="gone">
+
+               <TextView
+                   android:id="@+id/txt_account_info"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="18sp"
+                   android:text="Account Information"
+                   android:textColor="#212121"
+                   android:textStyle="bold"/>
+
+               <TextView
+                   android:id="@+id/txt_p_name"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="14sp"
+                   android:text="Person Name"
+                   android:layout_marginTop="5dp"
+                   android:textColor="#212121"/>
+
+               <TextView
+                   android:id="@+id/txt_p_email"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="14sp"
+                   android:text="person.email@gmail.com"
+                   android:textColor="#212121"
+                   android:visibility="gone" />
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#e5e5e5"
+                   android:layout_marginTop="10dp"/>
+
+
+               <LinearLayout
+                   android:id="@+id/lay_view_more_account_info"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:gravity="center_vertical"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginBottom="10dp">
+
+                   <com.fashion.krish.customview.TintableImageView
+                       android:id="@+id/img_arrow_account_info"
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@drawable/arrow_circle"/>
+
+                   <TextView
+                       android:id="@+id/txt_view_more_account_info"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="View More"
+                       android:layout_marginLeft="10dp"
+                       android:textSize="14sp"/>
+               </LinearLayout>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:background="@drawable/background_card"
+               android:padding="10dp"
+               android:layout_marginTop="10dp"
+               android:visibility="gone">
+
+               <TextView
+                   android:id="@+id/txt_my_orders"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="18sp"
+                   android:text="My Orders"
+                   android:textColor="#212121"
+                   android:textStyle="bold"/>
+
+               <TextView
+                   android:id="@+id/txt_order_count"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="14sp"
+                   android:text="You have no any pending or processing order with us"
+                   android:layout_marginTop="5dp"
+                   android:textColor="#212121"/>
+
+               <TextView
+                   android:id="@+id/txt_o_email"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="14sp"
+                   android:text="person.email@gmail.com"
+                   android:visibility="gone"
+                   android:textColor="#212121"/>
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#e5e5e5"
+                   android:layout_marginTop="10dp"/>
+
+
+               <LinearLayout
+                   android:id="@+id/lay_view_more_my_orders"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:gravity="center_vertical"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginBottom="10dp">
+
+                   <com.fashion.krish.customview.TintableImageView
+                       android:id="@+id/img_arrow_my_orders"
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@drawable/arrow_circle"/>
+
+                   <TextView
+                       android:id="@+id/txt_view_more_my_orders"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="View More"
+                       android:layout_marginLeft="10dp"
+                       android:textSize="14sp"/>
+               </LinearLayout>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:background="@drawable/background_card"
+               android:padding="10dp"
+               android:layout_marginTop="10dp"
+               android:visibility="gone">
+
+               <TextView
+                   android:id="@+id/txt_my_address"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="18sp"
+                   android:text="Address Book"
+                   android:textColor="#212121"
+                   android:textStyle="bold"/>
+
+               <TextView
+                   android:id="@+id/txt_no_address"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="14sp"
+                   android:text="No address in your address book"
+                   android:layout_marginTop="5dp"
+                   android:textColor="#212121"/>
+
+               <LinearLayout
+                   android:id="@+id/lay_address"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   android:visibility="gone">
+
+                   <TextView
+                       android:id="@+id/txt_address_name"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="14sp"
+                       android:text="Person Name"
+                       android:textColor="#212121"/>
+
+                   <TextView
+                       android:id="@+id/txt_address_st"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="14sp"
+                       android:text="Street Address"
+                       android:textColor="#212121"/>
+
+                   <TextView
+                       android:id="@+id/txt_address_st_1"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="14sp"
+                       android:text="Street Address 1"
+                       android:textColor="#212121"/>
+
+                   <TextView
+                       android:id="@+id/txt_address_other"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="14sp"
+                       android:text="City, State, Country, Pin code"
+                       android:textColor="#212121"/>
+
+                   <TextView
+                       android:id="@+id/txt_address_ph_no"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="14sp"
+                       android:text="T. No. : +91 9898098980"
+                       android:textColor="#212121"/>
+
+               </LinearLayout>
+
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#e5e5e5"
+                   android:layout_marginTop="10dp"/>
+
+
+               <LinearLayout
+                   android:id="@+id/lay_view_more_my_address"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:gravity="center_vertical"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginBottom="10dp">
+
+                   <com.fashion.krish.customview.TintableImageView
+                       android:id="@+id/img_arrow_my_address"
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@drawable/arrow_circle"/>
+
+                   <TextView
+                       android:id="@+id/txt_view_more_my_address"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="View More"
+                       android:layout_marginLeft="10dp"
+                       android:textSize="14sp"/>
+               </LinearLayout>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:background="@drawable/background_card"
+               android:padding="10dp"
+               android:layout_marginTop="10dp"
+               android:visibility="gone">
+
+               <TextView
+                   android:id="@+id/txt_my_wishlist"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="18sp"
+                   android:text="My Wishlist"
+                   android:textColor="#212121"
+                   android:textStyle="bold"/>
+
+               <TextView
+                   android:id="@+id/txt_wishlist_count"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="14sp"
+                   android:text="You have 0 product(s) in wishlist."
+                   android:layout_marginTop="5dp"
+                   android:textColor="#212121"/>
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#e5e5e5"
+                   android:layout_marginTop="10dp"/>
+
+
+               <LinearLayout
+                   android:id="@+id/lay_view_more_my_wishlist"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:gravity="center_vertical"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginBottom="10dp">
+
+                   <com.fashion.krish.customview.TintableImageView
+                       android:id="@+id/img_arrow_my_wishlist"
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@drawable/arrow_circle"/>
+
+                   <TextView
+                       android:id="@+id/txt_view_more_my_wishlist"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="View More"
+                       android:layout_marginLeft="10dp"
+                       android:textSize="14sp"/>
+               </LinearLayout>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:background="@drawable/background_card"
+               android:padding="10dp"
+               android:layout_marginTop="10dp"
+               android:visibility="gone">
+
+               <TextView
+                   android:id="@+id/txt_my_downloadable"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="18sp"
+                   android:text="My Downloadable Products"
+                   android:textColor="#212121"
+                   android:textStyle="bold" />
+
+               <TextView
+                   android:id="@+id/txt_order_downloadable"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="14sp"
+                   android:text="You have 0 downloadable product(s)."
+                   android:layout_marginTop="5dp"
+                   android:textColor="#212121"/>
+
+
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#e5e5e5"
+                   android:layout_marginTop="10dp"/>
+
+
+               <LinearLayout
+                   android:id="@+id/lay_view_more_my_downloadable"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:gravity="center_vertical"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginBottom="10dp">
+
+                   <com.fashion.krish.customview.TintableImageView
+                       android:id="@+id/img_arrow_my_downloadable"
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@drawable/arrow_circle"/>
+
+                   <TextView
+                       android:id="@+id/txt_view_more_my_downloadable"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="View More"
+                       android:layout_marginLeft="10dp"
+                       android:textSize="14sp"/>
+               </LinearLayout>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:background="@drawable/background_card"
+               android:padding="10dp"
+               android:layout_marginTop="10dp"
+               android:visibility="gone">
+
+               <TextView
+                   android:id="@+id/txt_my_reviews"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="18sp"
+                   android:text="My Product Reviews"
+                   android:textColor="#212121"
+                   android:textStyle="bold" />
+
+               <TextView
+                   android:id="@+id/txt_reviews_count"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="14sp"
+                   android:text="You have submitted 0 product review(s)."
+                   android:layout_marginTop="5dp"
+                   android:textColor="#212121"/>
+
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:background="#e5e5e5"
+                   android:layout_marginTop="10dp"/>
+
+
+               <LinearLayout
+                   android:id="@+id/lay_view_more_my_reviews"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:gravity="center_vertical"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginBottom="10dp">
+
+                   <com.fashion.krish.customview.TintableImageView
+                       android:id="@+id/img_arrow_my_reviews"
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@drawable/arrow_circle"/>
+
+                   <TextView
+                       android:id="@+id/txt_view_more_my_reviews"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="View More"
+                       android:layout_marginLeft="10dp"
+                       android:textSize="14sp"/>
+               </LinearLayout>
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+    </ScrollView>
+</com.fashion.krish.customview.SlidingRelativeLayout>
+

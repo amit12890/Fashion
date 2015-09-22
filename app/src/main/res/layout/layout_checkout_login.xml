@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lay_checkout_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/lay_my_address_child_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Checkout as a Guest or Register"
+                android:textColor="#212121"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#CBCBCB" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Register with us for future convenience:"
+                android:textColor="#212121"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_card"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+
+                <com.rey.material.widget.RadioButton
+                    android:id="@+id/radio_guest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Checkout as Guest"
+                    android:checked="true"
+                    android:gravity="center_vertical"/>
+
+                <com.rey.material.widget.RadioButton
+                    android:id="@+id/radio_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    android:gravity="center_vertical"/>
+
+                <LinearLayout
+                    android:id="@+id/lay_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.rey.material.widget.EditText
+                            style="@style/Material.Widget.EditText.Light"
+                            android:id="@+id/edt_fname"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:textColor="#333333"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                            android:inputType="textPersonName"
+                            android:hint="First Name"
+                            app:et_labelTextColor="#7B1FA2"
+                            app:et_supportMode="helper"
+                            app:et_supportTextErrorColor="#D32F2F"
+                            app:et_helper="This is required"
+                            app:et_supportTextColor="#D32F2F"
+                            app:et_dividerColor="#7B1FA2"
+                            app:et_labelTextSize="16sp"
+                            app:et_dividerHeight="1dp"
+                            android:layout_marginRight="10dp"
+                            app:et_dividerErrorColor="#D32F2F"/>
+
+                        <com.rey.material.widget.EditText
+                            style="@style/Material.Widget.EditText.Light"
+                            android:id="@+id/edt_lname"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:textColor="#333333"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                            android:inputType="textPersonName"
+                            android:hint="Last Name"
+                            app:et_labelTextColor="#7B1FA2"
+                            app:et_supportMode="helper"
+                            app:et_supportTextErrorColor="#D32F2F"
+                            app:et_helper="This is required"
+                            app:et_supportTextColor="#D32F2F"
+                            app:et_dividerColor="#7B1FA2"
+                            app:et_labelTextSize="16sp"
+                            app:et_dividerHeight="1dp"
+                            app:et_dividerErrorColor="#D32F2F" />
+
+                    </LinearLayout>
+
+                    <com.rey.material.widget.EditText
+                        style="@style/Material.Widget.EditText.Light"
+                        android:id="@+id/edt_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#333333"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:inputType="textEmailAddress"
+                        android:hint="Email"
+                        app:et_labelTextColor="#7B1FA2"
+                        app:et_supportMode="helper"
+                        app:et_supportTextErrorColor="#D32F2F"
+                        app:et_helper="This is required"
+                        app:et_supportTextColor="#D32F2F"
+                        app:et_dividerColor="#7B1FA2"
+                        app:et_labelTextSize="16sp"
+                        app:et_dividerHeight="1dp"
+                        app:et_dividerErrorColor="#D32F2F"
+                        android:layout_marginTop="15dp" />
+
+                    <com.rey.material.widget.EditText
+                        style="@style/Material.Widget.EditText.Light"
+                        android:id="@+id/edt_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#333333"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:inputType="textPassword"
+                        android:hint="Password"
+                        app:et_labelTextColor="#7B1FA2"
+                        app:et_supportMode="helper"
+                        app:et_supportTextErrorColor="#D32F2F"
+                        app:et_helper="This is required"
+                        app:et_supportTextColor="#D32F2F"
+                        app:et_dividerColor="#7B1FA2"
+                        app:et_labelTextSize="16sp"
+                        app:et_dividerHeight="1dp"
+                        app:et_dividerErrorColor="#D32F2F"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"/>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/lay_continue_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/lay_shipping_methods"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/tags_rounded_corners"
+                    android:orientation="horizontal">
+
+                    <com.rey.material.widget.Button
+                        android:id="@+id/btn_continue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#00ffffff"
+                        android:text="Continue"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="16sp"
+                        android:translationZ="2dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lay_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/background_card"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Returning Customers"
+                    android:textColor="#212121"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Sign in to speed up your checkout process"
+                    android:textColor="#212121"
+                    android:textSize="14sp" />
+
+                <com.rey.material.widget.EditText
+                    style="@style/Material.Widget.EditText.Light"
+                    android:id="@+id/edt_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                    android:inputType="textEmailAddress"
+                    android:hint="Email"
+                    app:et_labelTextColor="#7B1FA2"
+                    app:et_supportMode="helper"
+                    app:et_supportTextErrorColor="#D32F2F"
+                    app:et_helper="This is required"
+                    app:et_supportTextColor="#D32F2F"
+                    app:et_dividerColor="#7B1FA2"
+                    app:et_labelTextSize="16sp"
+                    app:et_dividerHeight="1dp"
+                    app:et_dividerErrorColor="#D32F2F"
+                    />
+
+                <com.rey.material.widget.EditText
+                    style="@style/Material.Widget.EditText.Light"
+                    android:id="@+id/edt_login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                    android:inputType="textPassword"
+                    android:hint="Password"
+                    app:et_labelTextColor="#7B1FA2"
+                    app:et_supportMode="helper"
+                    app:et_supportTextErrorColor="#D32F2F"
+                    app:et_helper="This is required"
+                    app:et_supportTextColor="#D32F2F"
+                    app:et_dividerColor="#7B1FA2"
+                    app:et_labelTextSize="16sp"
+                    app:et_dividerHeight="1dp"
+                    app:et_dividerErrorColor="#D32F2F"
+                    android:layout_marginTop="25dp" />
+
+                <LinearLayout
+                    android:id="@+id/lay_login_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/tags_rounded_corners"
+                    android:orientation="horizontal">
+
+                    <com.rey.material.widget.Button
+                        android:id="@+id/btn_login"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#00ffffff"
+                        android:text="Login"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="16sp"
+                        android:translationZ="2dp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
+

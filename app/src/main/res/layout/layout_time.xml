@@ -22,9 +22,11 @@
         android:layout_height="wrap_content"
         android:text="HH:mm:ss"
         android:textColor="#000000"
+        android:layout_marginTop="5dp"
         app:et_supportTextErrorColor="#ff0000"/>
 
     <View
+        android:id="@+id/time_separator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"

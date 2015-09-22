@@ -1,13 +1,215 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lay_root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="fragments.StoreLocaterFragment">
+    android:layout_height="wrap_content">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Store Locator" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="30dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="15dp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_card"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Store Finder"
+                android:textColor="#212121"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:background="#e5e5e5"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <com.rey.material.widget.EditText
+                    android:id="@+id/edt_store_finder"
+                    style="@style/Material.Widget.EditText.Light"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:hint="City, State or Zip"
+                    android:inputType="textPersonName"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                    android:textColor="#333333"
+                    app:et_dividerColor="#7B1FA2"
+                    app:et_dividerErrorColor="#D32F2F"
+                    app:et_dividerHeight="1dp"
+                    app:et_helper="This is required"
+                    app:et_labelTextColor="#7B1FA2"
+                    app:et_labelTextSize="12sp"
+                    app:et_supportMode="none"
+                    app:et_supportTextColor="#D32F2F"
+                    app:et_supportTextErrorColor="#D32F2F" />
+
+                <LinearLayout
+                    android:id="@+id/lay_location_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:background="@color/drawer_pressed"
+                    android:orientation="horizontal">
+
+                    <com.rey.material.widget.Button
+                        android:id="@+id/btn_location_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="#00ffffff"
+                        android:text="Search"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="16sp"
+                        android:translationZ="2dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_card"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Your Nearest Stores"
+                android:textColor="#212121"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:background="#e5e5e5"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/lay_switch_view"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_margin="15dp"
+                android:background="@color/drawer_pressed"
+                android:orientation="horizontal">
+
+                <com.rey.material.widget.Button
+                    android:id="@+id/btn_switch_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#00ffffff"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="View stores with Geo Map"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFFFF"
+                    android:textSize="16sp"
+                    android:translationZ="2dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:background="#e5e5e5"
+                android:visibility="visible" />
+
+            <ViewFlipper
+                android:id="@+id/viewFlipper"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@+id/lay_add_new_address">
+
+
+
+
+                <ScrollView
+                    android:id="@+id/layout_register_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/lay_title"
+                    android:overScrollMode="never"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/lay_list_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="vertical" />
+                </ScrollView>
+
+                <LinearLayout
+                    android:id="@+id/lay_map_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <fragment
+                        android:id="@+id/map"
+                        android:name="com.google.android.gms.maps.MapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+
+            </ViewFlipper>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+
+
+
+

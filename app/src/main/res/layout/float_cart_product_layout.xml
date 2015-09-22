@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:id="@+id/img_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/linearLayout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"
+        android:background="#F6F6F6"
+        android:padding="7dp"
+        android:src="@drawable/ic_close" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/img_delete"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_product_main"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/product_sample" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Product Name"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <com.fashion.krish.customview.AutoFitTextView
+                android:id="@+id/txt_regular_price"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:text="$ 123"
+                android:textColor="@color/drawer_pressed"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.rey.material.widget.EditText
+                    android:id="@+id/edt_qty"
+                    style="@style/Material.Widget.EditText.Light"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="Qty"
+                    android:inputType="number"
+                    app:et_dividerColor="#7B1FA2"
+                    app:et_dividerErrorColor="#D32F2F"
+                    app:et_dividerHeight="1dp"
+                    app:et_labelTextColor="#7B1FA2"
+
+                    app:et_labelTextSize="16sp"
+                    app:et_supportMode="helper"
+                    app:et_supportTextColor="#D32F2F"
+                    app:et_supportTextErrorColor="#D32F2F" />
+
+                <LinearLayout
+                    android:id="@+id/lay_update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/tags_rounded_corners"
+                    android:layout_marginLeft="10dp">
+
+                    <com.rey.material.widget.Button
+                        android:id="@+id/btn_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Update"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="-5dp"
+        android:background="#E5E5E5" />
+
+</RelativeLayout>
+
+
+
+
+

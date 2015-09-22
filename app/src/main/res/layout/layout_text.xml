@@ -27,17 +27,30 @@
         app:et_supportMaxChars="20"
         app:et_supportTextErrorColor="#ff0000"/>
 
+    <com.rey.material.widget.EditText
+        style="@style/Material.Widget.EditText.Light"
+        android:id="@+id/edt_txt_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        app:et_supportMode="helper"
+        android:visibility="gone"
+        app:et_dividerColor="#7B1FA2"
+        app:et_dividerHeight="1dp"
+        app:et_labelTextColor="#000000"
+        app:et_supportTextErrorColor="#ff0000"/>
+
     <TextView
         android:id="@+id/txt_text_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:textColor="#ff0000"
         android:visibility="gone"
         android:text="This is a required field"
         />
 
     <View
+        android:id="@+id/view_seperater"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"

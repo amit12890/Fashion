@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lay_progress_bar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#b3ffffff"
+    android:visibility="visible">
+
+    <com.fashion.krish.customview.ProgressWheel
+        android:id="@+id/progressBarTwo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        ProgressWheel:barColor="#339BB9"
+        ProgressWheel:barLength="25dp"
+        ProgressWheel:imageheight="10dp"
+        ProgressWheel:imagewidth="10dp"
+        ProgressWheel:rimColor="#44000000"
+        ProgressWheel:barWidth="3dp"
+        ProgressWheel:rimWidth="3dp"
+        ProgressWheel:spinSpeed="5dp"
+        ProgressWheel:textColor="#222222"
+        ProgressWheel:textSize="25sp" />
+</RelativeLayout>
+
+

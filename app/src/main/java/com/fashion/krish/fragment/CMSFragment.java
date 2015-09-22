@@ -1,34 +1,45 @@
 package com.fashion.krish.fragment;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fashion.krish.AppController;
 import com.fashion.krish.R;
 import com.fashion.krish.RestClient;
+import com.fashion.krish.activity.DashboardActivity;
+import com.fashion.krish.model.Content;
 import com.fashion.krish.utility.Utility;
+import com.rey.material.widget.Button;
 import com.rey.material.widget.ProgressView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class CMSFragment extends Fragment implements View.OnClickListener {
+public class CMSFragment extends Fragment {
 
 
     private Utility utility;
     private String page_id;
-    private ProgressView progressView;
-    private RelativeLayout progressLay;
-    private TextView txtProgress;
+    private RelativeLayout rootLay;
+    //private TextView txtProgress;
     private WebView webView;
+    private LinearLayout layDashboardItems;
+    private ImageView imgLogo;
+
 
     public CMSFragment(String page_id) {
         // Required empty public constructor
@@ -47,16 +58,13 @@ public class CMSFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_cms, container, false);
-
-        txtProgress = (TextView) rootView.findViewById(R.id.txt_progress_text);
-        progressView =(ProgressView) rootView.findViewById(R.id.progressbar);
-        progressLay =(RelativeLayout) rootView.findViewById(R.id.lay_progress_dialog);
+        utility = new Utility(getActivity());
+        //txtProgress = (TextView) rootView.findViewById(R.id.txt_progress_text);
+        rootLay =(RelativeLayout) getActivity().findViewById(R.id.lay_root);
         webView = (WebView) rootView.findViewById(R.id.web_cms);
 
-        rootView.findViewById(R.id.btn_aboutus).setOnClickListener(this);
-        rootView.findViewById(R.id.btn_shipping).setOnClickListener(this);
-        rootView.findViewById(R.id.btn_faq).setOnClickListener(this);
-        rootView.findViewById(R.id.btn_returns).setOnClickListener(this);
+
+
 
         webView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -66,7 +74,16 @@ public class CMSFragment extends Fragment implements View.OnClickListener {
         });
         webView.setLongClickable(false);
 
-        getCMSContent();
+        addFooterCMSButtons(rootView);
+        getCMSContent(page_id);
+
+        imgLogo = (ImageView) getActivity().findViewById(R.id.img_logo_title);
+        imgLogo.setVisibility(View.GONE);
+        layDashboardItems = (LinearLayout) getActivity().findViewById(R.id.lay_dashboard_items);
+        layDashboardItems.setVisibility(View.GONE);
+
+        if(DashboardActivity.selectedFragment != null)
+            DashboardActivity.animateToggle(0, 1);
 
         return rootView;
 
@@ -79,7 +96,8 @@ public class CMSFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void getCMSContent(){
+    private void getCMSContent(final String page_id){
+        utility.showAnimatedLogoProgressBar(rootLay);
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -98,7 +116,7 @@ public class CMSFragment extends Fragment implements View.OnClickListener {
 
                                         public void onPageFinished(WebView view, String url) {
                                             // do your stuff here
-                                            progressLay.setVisibility(View.GONE);
+                                            utility.hideAnimatedLogoProgressBar();
 
                                         }
                                     });
@@ -125,35 +143,94 @@ public class CMSFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    @Override
-    public void onClick(View v) {
 
-        switch (v.getId()){
-            case R.id.btn_aboutus:
-                page_id = "about-us";
-                getCMSContent();
-                progressLay.setVisibility(View.VISIBLE);
+    public void addFooterCMSButtons(View rootView){
 
-                break;
-            case R.id.btn_shipping:
-                page_id = "shipping";
-                getCMSContent();
-                progressLay.setVisibility(View.VISIBLE);
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-                break;
-            case R.id.btn_faq:
-                page_id = "faq";
-                getCMSContent();
-                progressLay.setVisibility(View.VISIBLE);
+        Button btnCopyRight = (Button) rootView.findViewById(R.id.btn_copy_right);
+        btnCopyRight.setText(AppController.COPY_RIGHT);
 
-                break;
-            case R.id.btn_returns:
-                page_id = "returns";
-                getCMSContent();
-                progressLay.setVisibility(View.VISIBLE);
+        ImageView imgFb = (ImageView) rootView.findViewById(R.id.img_facebook);
+        imgFb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SocialFragment socialFragment = new SocialFragment(AppController.FACEBOOK_DETAILS.get("page"));
+                updateFragment(socialFragment);
+            }
+        });
+        ImageView imgTwitter = (ImageView) rootView.findViewById(R.id.img_twitter);
+        imgTwitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SocialFragment socialFragment = new SocialFragment(AppController.TWITTER_DETAILS.get("page"));
+                updateFragment(socialFragment);
+            }
+        });
+        ImageView imgGPlus = (ImageView) rootView.findViewById(R.id.img_gplus);
+        imgGPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SocialFragment socialFragment = new SocialFragment(AppController.GOOGLE_P_DETAILS.get("page"));
+                updateFragment(socialFragment);
+            }
+        });
 
-                break;
+        if(!AppController.FACEBOOK_DETAILS.get("isActive").equals("1")){
+            imgFb.setVisibility(View.GONE);
+        }
+        if(!AppController.TWITTER_DETAILS.get("isActive").equals("1")){
+            imgTwitter.setVisibility(View.GONE);
+        }
+        if(!AppController.GOOGLE_P_DETAILS.get("isActive").equals("1")){
+            imgGPlus.setVisibility(View.GONE);
+        }
+
+        LinearLayout layout =  (LinearLayout) rootView.findViewById(R.id.lay_cms_actions);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
+        params.weight = 1;
+        int count = 1;
+        for (int i = 0; i < AppController.contentArray.size(); i++) {
+            View footerView = inflater.inflate(R.layout.lay_cms_button_footer, null);
+            footerView.setLayoutParams(params);
+            final Content content = AppController.contentArray.get(i);
+            if(content.content_action_type.equals("footer") && count <= 2){
+
+                Button btnAction = (Button) footerView.findViewById(R.id.btn_cms);
+                btnAction.setText(content.content_action_label);
+                btnAction.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getCMSContent(content.content_action_id);
+                    }
+                });
+
+                LinearLayout sepLay = (LinearLayout) footerView.findViewById(R.id.separator_cms);
+                if(count == 2)
+                    sepLay.setVisibility(View.GONE);
+
+                layout.addView(footerView);
+                count ++;
+            }
+
         }
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(DashboardActivity.selectedFragment != null)
+            DashboardActivity.animateToggle(1, 0);
+        imgLogo.setVisibility(View.VISIBLE);
+        layDashboardItems.setVisibility(View.VISIBLE);
+    }
+
+    public void updateFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getFragmentManager();
+        DashboardActivity.selectedFragment = CMSFragment.this;
+        //Replace fragment
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.content_frame, fragment);
+        ft.commit();
+    }
 }

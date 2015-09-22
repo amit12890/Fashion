@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.fashion.krish.fragment.ProductListFragment;
+import com.fashion.krish.model.Address;
 import com.fashion.krish.model.ProductDetails;
 import com.fashion.krish.utility.AppPreferences;
 import com.fashion.krish.utility.Utility;
@@ -44,11 +45,26 @@ public class RestClient {
     ArrayList<NameValuePair> headers;
     Activity activity;
     private AppPreferences preferences;
+
     String url = "http://coupcommerce.magentoprojects.net/jsonconnect/";
+    private String APP_ID = "admand3";
+
+    //String url = "http://vs.magentoprojects.net/index.php/jsonconnect/";
+    //private String APP_ID = "adm1111";
+
     //String url = "http://10.16.16.121/coupcommerce/jsonconnect/";
+    //String url = "http://10.16.16.172/coupcommerce/jsonconnect/";
 
+    //String url = "http://sony.magentoprojects.net/index.php/jsonconnect/";
+    //private String APP_ID = "adm1111";
 
-    final int TIMEOUT = 60;
+    public static String TIMEOUT_ERROR = "timeout_error",ERROR = "error";
+    public static String TIMEOUT_ERROR_MESSAGE = "It takes longer time than expected.\n" +
+            "Please try again later.";
+    public static String ERROR_MESSAGE = "Some error has occurred.\n Please try again later";
+
+    final int TIMEOUT = 10;
+
     public static org.apache.http.client.CookieStore cookieStore;
 
     public RestClient(Activity activity) {
@@ -145,8 +161,7 @@ public class RestClient {
         }
     }
 
-    private String showTimeoutError()
-    {
+    private String showTimeoutError(){
 
         try {
             JSONObject jsonObject = new JSONObject();
@@ -159,8 +174,7 @@ public class RestClient {
         }
     }
 
-    public static boolean isNetworkAvailable(Activity activity, final Utility utility)
-    {
+    public static boolean isNetworkAvailable(Activity activity, final Utility utility){
         try {
 
             boolean haveConnectedWifi = false;
@@ -204,31 +218,27 @@ public class RestClient {
     public String createConnection() {
 
         try {
-            HttpGet request = new HttpGet(url+"configuration/index/app_code/admand3/");
+            HttpGet request = new HttpGet(url+"configuration/index/app_code/"+APP_ID+"/device/native/");
 
             //request.setEntity(new UrlEncodedFormEntity(headers));
             ResponseHandler<String> handler = new BasicResponseHandler();
             response = client.execute(request, handler);
             JSONObject connectionObject = new JSONObject(response);
-            preferences.setIsLoggedIn(connectionObject.get("is_loggined").toString());
+            preferences.setIsLoggedIn(connectionObject.get("logged_in").toString());
             cookieStore=client.getCookieStore();saveCookies();
 
             client.getConnectionManager().shutdown();
             Log.d("Connection Response", response);
             return response;
 
-        } catch (ConnectTimeoutException timeout) {
+        }  catch (SocketTimeoutException timeout) {
             timeout.printStackTrace();
             showTimeoutError();
-            return null;
-        } catch (SocketTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
+            return TIMEOUT_ERROR;
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            return null;
+            return ERROR;
         }
     }
 
@@ -236,7 +246,7 @@ public class RestClient {
 
         try {
             HttpPost request = new HttpPost(url+"customer/login");
-            addParameters("username", userName);
+            addParameters("email", userName);
             addParameters("password", password);
             addParameters("Content-Type" , "application/json");
 
@@ -250,18 +260,47 @@ public class RestClient {
             Log.d("Login Response", response);
             return response;
 
-        } catch (ConnectTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return showTimeoutError();
         } catch (SocketTimeoutException timeout) {
             timeout.printStackTrace();
             showTimeoutError();
-            return null;
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            return null;
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String loginViaFacebook(String accessToken, String clientId) {
+
+        try {
+            HttpPost request = new HttpPost(url+"socialconnect_facebook/connect");
+            addParameters("code", accessToken);
+            addParameters("clientId", clientId);
+            addParameters("Content-Type" , "application/json");
+
+            request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("FB Login Response", response);
+            return response;
+
+        }  catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
         }
     }
 
@@ -288,18 +327,96 @@ public class RestClient {
             Log.d("Register Response", response);
             return response;
 
-        } catch (ConnectTimeoutException timeout) {
+        }  catch (SocketTimeoutException timeout) {
             timeout.printStackTrace();
             showTimeoutError();
-            return showTimeoutError();
-        } catch (SocketTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            return null;
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String saveAddress(ArrayList<String> addressParams) {
+
+        try {
+            HttpPost request = new HttpPost(url+"customer/saveAddress");
+
+            addParameters("firstname", addressParams.get(0));
+            addParameters("lastname", addressParams.get(1));
+            addParameters("company", addressParams.get(2));
+            addParameters("telephone", addressParams.get(3));
+            addParameters("street[]", addressParams.get(4));
+            addParameters("street[]", addressParams.get(5));
+            addParameters("city", addressParams.get(6));
+            addParameters("country_id", addressParams.get(7));
+            addParameters("region", addressParams.get(8));
+            addParameters("postcode", addressParams.get(9));
+            addParameters("default_shipping", addressParams.get(10));
+            addParameters("fax", addressParams.get(11));
+
+            request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Save Address Response", response);
+            return response;
+
+        }  catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String changeAccountInfo(ArrayList<String> infoParams) {
+
+        try {
+            HttpPost request = new HttpPost(url+"customer/edit");
+
+
+            addParameters("firstname", infoParams.get(1));
+            addParameters("lastname", infoParams.get(2));
+            addParameters("email", infoParams.get(3));
+            addParameters("change_password", infoParams.get(0));
+            if(infoParams.get(0).equals("1")){
+                addParameters("current_password", infoParams.get(4));
+                addParameters("password", infoParams.get(5));
+                addParameters("confirmation", infoParams.get(6));
+            }
+
+            request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Account Info Response", response);
+            return response;
+
+        }  catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
         }
     }
 
@@ -317,18 +434,121 @@ public class RestClient {
             Log.d("HomeScreen Response", response);
             return response;
 
-        } catch (ConnectTimeoutException timeout) {
+        }  catch (SocketTimeoutException timeout) {
             timeout.printStackTrace();
             showTimeoutError();
-            return null;
-        } catch (SocketTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            return null;
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String getUserAccountData() {
+
+        try {
+            HttpGet request = new HttpGet(url+"customer/dashboard/");
+
+            //request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("User Account Response", response);
+            return response;
+
+        }  catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String getRecentViewedProducts() {
+
+        try {
+            HttpGet request = new HttpGet(url+"catalog/recentViewed/");
+
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Recent Viewed Products", response);
+            return response;
+
+        }  catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String getStores(String latitude,String longitude) {
+
+        try {
+            HttpGet request = new HttpGet(url+"locations/search/latitude/"+latitude+"/longitude/"+longitude+"/");
+
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Store list", response);
+            return response;
+
+        }  catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String searchStores(String queryString) {
+
+        try {
+            HttpGet request = new HttpGet(url+"locations/search/querystring/"+queryString+"/");
+
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Searched Store list", response);
+            return response;
+
+        }  catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
         }
     }
 
@@ -350,18 +570,49 @@ public class RestClient {
             Log.d("CMS Page id:" + id, response);
             return response;
 
-        } catch (ConnectTimeoutException timeout) {
+        }  catch (SocketTimeoutException timeout) {
             timeout.printStackTrace();
             showTimeoutError();
-            return showTimeoutError();
-        } catch (SocketTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            return null;
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+
+    }
+
+    public String getCategory(String category_id){
+        try {
+            HttpGet request = new HttpGet(url+"catalog/category/id/"+category_id);
+
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            //Log.d("Product List for Request:", request.getURI().toString());
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Sub Cat for Category:" + category_id, response);
+            if(new JSONObject(response).has("status")){
+                if(new JSONObject(response).get("status").toString().equals("error")){
+
+                    return "error";
+                }
+            }
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
         }
 
     }
@@ -392,7 +643,7 @@ public class RestClient {
                     filterParam+"offset/"+offset+"/count/"+limit);
 
             ResponseHandler<String> handler = new BasicResponseHandler();
-            Log.d("Product List for Request:", request.getURI().toString());
+            //Log.d("Product List for Request:", request.getURI().toString());
             response = client.execute(request, handler);
             cookieStore=client.getCookieStore();saveCookies();
 
@@ -406,18 +657,50 @@ public class RestClient {
             }
             return response;
 
-        } catch (ConnectTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
         } catch (SocketTimeoutException timeout) {
             timeout.printStackTrace();
             showTimeoutError();
-            return null;
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            return null;
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+
+    }
+
+    public String getWishListProduct(String offset,String limit){
+
+        try {
+            HttpGet request = new HttpGet(url+"wishlist/index/offset/"+offset+"/count/"+limit);
+
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            //Log.d("Product List for Request:", request.getURI().toString());
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            //Log.d("Product List for Category:" + category_id, response);
+            if(new JSONObject(response).has("status")){
+                if(new JSONObject(response).get("status").toString().equals("error")){
+
+                    return "error";
+                }
+            }
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
         }
 
     }
@@ -432,21 +715,19 @@ public class RestClient {
             cookieStore=client.getCookieStore();saveCookies();
 
             client.getConnectionManager().shutdown();
-            Log.d("Product List for Category:"+category_id, response);
+            Log.d("Product List Category:"+category_id, response);
             return response;
 
-        } catch (ConnectTimeoutException timeout) {
+        }  catch (SocketTimeoutException timeout) {
             timeout.printStackTrace();
             showTimeoutError();
-            return null;
-        } catch (SocketTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            return null;
+            Log.d("Error", e.toString());
+            return ERROR;
         }
 
     }
@@ -464,18 +745,16 @@ public class RestClient {
             Log.d("Product details for Product:"+product_id, response);
             return response;
 
-        } catch (ConnectTimeoutException timeout) {
+        }  catch (SocketTimeoutException timeout) {
             timeout.printStackTrace();
             showTimeoutError();
-            return null;
-        } catch (SocketTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            return null;
+            Log.d("Error", e.toString());
+            return ERROR;
         }
 
     }
@@ -493,18 +772,16 @@ public class RestClient {
             Log.d("Product Gallery Details for Product:"+product_id, response);
             return response;
 
-        } catch (ConnectTimeoutException timeout) {
+        }  catch (SocketTimeoutException timeout) {
             timeout.printStackTrace();
             showTimeoutError();
-            return null;
-        } catch (SocketTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            return null;
+            Log.d("Error", e.toString());
+            return ERROR;
         }
 
     }
@@ -522,18 +799,16 @@ public class RestClient {
             Log.d("Product options config details for Product:"+product_id, response);
             return response;
 
-        } catch (ConnectTimeoutException timeout) {
+        }  catch (SocketTimeoutException timeout) {
             timeout.printStackTrace();
             showTimeoutError();
-            return null;
-        } catch (SocketTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            return null;
+            Log.d("Error", e.toString());
+            return ERROR;
         }
 
     }
@@ -551,18 +826,503 @@ public class RestClient {
             Log.d("Product Reviews for Product:"+product_id, response);
             return response;
 
-        } catch (ConnectTimeoutException timeout) {
+        }  catch (SocketTimeoutException timeout) {
             timeout.printStackTrace();
             showTimeoutError();
-            return null;
-        } catch (SocketTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            return null;
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+
+    }
+
+    public String getUserAddresses(){
+
+        try {
+            HttpGet request = new HttpGet(url+"customer/address");
+
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("User Addresses", response);
+            return response;
+
+        }  catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+
+    }
+
+    public String getUserOrders() {
+
+        try {
+            HttpGet request = new HttpGet(url+"customer/orderList");
+
+            //request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Order List Response", response);
+            return response;
+
+        }  catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String getOrderDetails(String order_id) {
+
+        try {
+            HttpGet request = new HttpGet(url+"customer/orderDetails/order_id/"+order_id);
+
+            //request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Order Details", response);
+            return response;
+
+        }  catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String getCheckoutDetails() {
+
+        try {
+            HttpGet request = new HttpGet(url+"checkout");
+
+            //request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Checkout Details", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String getShippingMethodList() {
+
+        try {
+            HttpGet request = new HttpGet(url+"checkout/shippingMethodsList");
+
+            //request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Shipping Methods", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String saveShippingMethod(String shipping_method){
+
+
+        try {
+            HttpPost request = new HttpPost(url+"checkout/saveshippingmethod");
+            addParameters("shipping_method", shipping_method);
+            addParameters("Content-Type", "application/json");
+
+            request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Save shipping:", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+
+    }
+
+    public String saveShippingAddress(Address address){
+
+
+        try {
+            HttpPost request = new HttpPost(url+"checkout/savebillingaddress");
+            addParameters("billing_address_id", address.address_entity_id);
+            addParameters("billing[use_for_shipping]", address.is_use_for_shipping);
+            addParameters("billing[firstname]", address.address_fname);
+            addParameters("billing[lastname]", address.address_lname);
+            addParameters("billing[city]", address.address_city);
+            addParameters("billing[Country_id]", address.address_country_id);
+            addParameters("billing[region]", address.address_region);
+            addParameters("billing[postcode]", address.address_zip);
+            addParameters("billing[telephone]", address.address_phone);
+            addParameters("billing[save_in_address_book]", address.save_in_address_book);
+
+            addParameters("Content-Type", "application/json");
+
+            request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Save shipping address:", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+
+    }
+
+    public String getPaymentMethodList() {
+
+        try {
+            HttpGet request = new HttpGet(url+"checkout/paymentMethods");
+
+            //request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Payment Methods", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String savePayment(HashMap<String,String> payment_params){
+
+
+        try {
+            HttpPost request = new HttpPost(url+"checkout/savePayment");
+
+            for (String key : payment_params.keySet()) {
+                addParameters(key, payment_params.get(key));
+            }
+
+            addParameters("Content-Type", "application/json");
+
+            request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Save Payment:", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+
+    }
+
+    public String getOrderReviews() {
+
+        try {
+            HttpGet request = new HttpGet(url+"checkout/orderReview");
+
+            //request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Order Review", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String saveOrder(HashMap<String,String> payment_params){
+
+
+        try {
+            HttpPost request = new HttpPost(url+"checkout/saveOrder");
+
+            for (String key : payment_params.keySet()) {
+                addParameters(key, payment_params.get(key));
+            }
+
+            addParameters("Content-Type", "application/json");
+
+            request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Save Order:", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+
+    }
+
+    public String getCartDetails() {
+
+        try {
+            HttpGet request = new HttpGet(url+"cart/index");
+
+            //request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Cart Details", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String updateCart(HashMap<String,String> cart_params){
+
+
+        try {
+            HttpPost request = new HttpPost(url+"cart/update");
+
+            for (String key : cart_params.keySet()) {
+                addParameters(key, cart_params.get(key));
+            }
+
+            addParameters("Content-Type", "application/json");
+
+            request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Update Cart:", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+
+    }
+
+    public String deleteCartItems(String item_id) {
+
+        try {
+            HttpGet request = new HttpGet(url+"cart/delete/item_id/"+item_id);
+
+            //request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Delete Item", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
+        }
+    }
+
+    public String applyCoupon(String couponCode) {
+
+        try {
+            HttpPost request = new HttpPost(url+"cart/coupon/");
+            addParameters("coupon_code", couponCode);
+            addParameters("Content-Type", "application/json");
+
+            request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("Coupon code response:" + "", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return "error";
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return "error";
+        }
+    }
+
+    public String addToCart(String data){
+        String content=null;
+
+        try {
+            HttpPost request = new HttpPost(url+"cart/add");
+            addParameters("product", "373");
+            addParameters("Content-Type", "application/json");
+
+            request.setEntity(new UrlEncodedFormEntity(headers));
+            ResponseHandler<String> handler = new BasicResponseHandler();
+
+            response = client.execute(request, handler);
+            cookieStore=client.getCookieStore();saveCookies();
+
+            client.getConnectionManager().shutdown();
+            Log.d("CMS Page id:" + "", response);
+            return response;
+
+        } catch (SocketTimeoutException timeout) {
+            timeout.printStackTrace();
+            showTimeoutError();
+            Log.d("Error", timeout.toString());
+            return TIMEOUT_ERROR;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.d("Error", e.toString());
+            return ERROR;
         }
 
     }
@@ -581,47 +1341,16 @@ public class RestClient {
             Log.d("Logout Response", response);
             return response;
 
-        } catch (ConnectTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
         } catch (SocketTimeoutException timeout) {
             timeout.printStackTrace();
             showTimeoutError();
-            return null;
+            Log.d("Error", timeout.toString());
+            return "error";
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
-            return null;
-        }
-    }
-
-    public String getCartInfo() {
-
-        try {
-            HttpGet request = new HttpGet(url+"cart/info");
-
-            //request.setEntity(new UrlEncodedFormEntity(headers));
-            ResponseHandler<String> handler = new BasicResponseHandler();
-            response = client.execute(request, handler);
-            cookieStore=client.getCookieStore();saveCookies();
-
-            client.getConnectionManager().shutdown();
-            Log.d("Logout Response", response);
-            return response;
-
-        } catch (ConnectTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
-        } catch (SocketTimeoutException timeout) {
-            timeout.printStackTrace();
-            showTimeoutError();
-            return null;
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-            return null;
+            Log.d("Error", e.toString());
+            return "error";
         }
     }
 
@@ -637,8 +1366,6 @@ public class RestClient {
             }
         }
     }
-
-
 
 
 }

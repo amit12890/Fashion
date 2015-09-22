@@ -1,118 +1,134 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lay_root"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent"
-    tools:context=".DashboardActivity">
+    android:layout_height="wrap_content">
 
-    <include layout="@layout/toolbar"/>
-
-    <android.support.v4.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".DashboardActivity">
 
-        <!-- The main content view -->
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+
+        <include layout="@layout/toolbar" />
+
+        <android.support.v4.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <!-- The main content view -->
-            <FrameLayout
-                android:id="@+id/content_frame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-            </FrameLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <!-- The main content view -->
+                <FrameLayout
+                    android:id="@+id/content_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></FrameLayout>
 
-        </RelativeLayout>
+            </RelativeLayout>
 
 
-        <!-- The category navigation drawer -->
-        <RelativeLayout
-            android:id="@+id/navdrawerlayout"
-            android:layout_width="@dimen/navdrawer_width"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@android:color/white"
-            android:orientation="vertical" >
+            <!-- The category navigation drawer -->
+            <RelativeLayout
+                android:id="@+id/navdrawerlayout"
+                android:layout_width="@dimen/navdrawer_width"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:background="@android:color/white"
+                android:orientation="vertical">
 
-            <ExpandableListView
-                android:id="@+id/categoryExpandableListView"
+                <ExpandableListView
+                    android:id="@+id/categoryExpandableListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:divider="@null"
+                    android:groupIndicator="@null"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"></ExpandableListView>
+
+            </RelativeLayout>
+
+            <!-- The navigation drawer cart -->
+            <RelativeLayout
+                android:id="@+id/navdrawerlayout_right"
+                android:layout_width="@dimen/navdrawer_width"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:background="@android:color/white"
+                android:orientation="vertical">
+
+                <include layout="@layout/float_shopping_cart" />
+
+                <LinearLayout
+                    android:id="@+id/lay_no_cart_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/img_shopping_cart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/cart_empty_icon" />
+
+                    <TextView
+                        android:id="@+id/txt_oops"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img_shopping_cart"
+                        android:layout_centerHorizontal="true"
+                        android:text="OOPS!"
+                        android:textColor="#333333"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_oops"
+                        android:layout_centerHorizontal="true"
+                        android:text="Your cart is feeling quite empty"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <!-- The navigation drawer filter -->
+            <RelativeLayout
+                android:id="@+id/navdrawerlayout_filer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:groupIndicator="@null"
-                android:listSelector="@drawable/holo_white_red_ripple"
-                android:divider="@null"
-                android:overScrollMode="never"
-                android:scrollbars="none"
-                android:background="@android:color/white">
-            </ExpandableListView>
+                android:layout_gravity="right"
+                android:layout_marginLeft="-64dp"
+                android:background="@android:color/white"
+                android:orientation="vertical">
 
-        </RelativeLayout>
+                <include layout="@layout/layout_filter" />
 
-        <!-- The navigation drawer cart -->
-        <RelativeLayout
-            android:id="@+id/navdrawerlayout_right"
-            android:layout_width="@dimen/navdrawer_width"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:background="@android:color/white"
-            android:orientation="vertical"
-            android:paddingTop="50dp">
+            </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/img_shopping_cart"
-                android:layout_width="105dp"
-                android:layout_height="105dp"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/shopping_cart"/>
-            <TextView
-                android:id="@+id/txt_oops"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="OOPS!"
-                android:textSize="22sp"
-                android:layout_marginLeft="20dp"
-                android:layout_below="@+id/img_shopping_cart"
-                android:layout_centerHorizontal="true"
-                android:textColor="#333333"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_oops"
-                android:text="Your cart is feeling quite empty"
-                android:textSize="18sp"
-                android:layout_centerHorizontal="true"/>
-
-        </RelativeLayout>
-
-        <!-- The navigation drawer filter -->
-        <RelativeLayout
-            android:id="@+id/navdrawerlayout_filer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:background="@android:color/white"
-            android:orientation="vertical"
-            android:layout_marginLeft="-64dp"
-            >
-
-            <include layout="@layout/layout_filter"/>
-
-        </RelativeLayout>
-
-        <!-- The navigation drawer for other layouts -->
-        <RelativeLayout
-            android:id="@+id/navdrawerlayout_other"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:background="@android:color/white"
-            android:orientation="vertical"
-            android:layout_marginLeft="-64dp" />
+            <!-- The navigation drawer for other layouts -->
+            <RelativeLayout
+                android:id="@+id/navdrawerlayout_other"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:layout_marginLeft="-64dp"
+                android:background="@android:color/white"
+                android:orientation="vertical" />
 
 
-    </android.support.v4.widget.DrawerLayout>
+        </android.support.v4.widget.DrawerLayout>
 
-</LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

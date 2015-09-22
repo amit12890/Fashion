@@ -19,7 +19,7 @@
             <RelativeLayout
                 android:id="@+id/lay_rotate_banner"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="175dp">
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/pager_rotate_banner"
@@ -29,7 +29,7 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="75dp"
                     android:layout_alignParentBottom="true"
                     android:background="#A6000000"
                     android:gravity="center"
@@ -60,14 +60,13 @@
             <RelativeLayout
                 android:id="@+id/lay_category"
                 android:layout_width="match_parent"
-                android:layout_height="370dp"
+                android:layout_height="350dp"
                 android:visibility="visible">
 
                 <com.astuetz.PagerSlidingTabStrip
                     android:id="@+id/tabs"
                     android:layout_width="match_parent"
                     android:layout_height="48dip"
-                    android:background="@color/drawer_pressed"
                     app:pstsTabTextColor="@color/tab_text_color"
                     style="@style/PagerSlidingTabStripStyle"
                     />
@@ -80,6 +79,39 @@
 
             </RelativeLayout>
 
+            <LinearLayout
+                android:id="@+id/lay_recent_view_products"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFA000"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You Recently Viewed"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:layout_margin="10dp"
+                    android:textSize="16sp"/>
+
+                <HorizontalScrollView
+                    android:id="@+id/scroll_related_products"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/layout_product_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                    </LinearLayout>
+
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
             <include layout="@layout/layout_social_footer"
                 android:id="@+id/layout_footer"
                 android:layout_width="match_parent"

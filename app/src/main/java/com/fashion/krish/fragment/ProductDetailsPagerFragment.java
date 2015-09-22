@@ -20,12 +20,15 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,19 +54,23 @@ import java.util.HashMap;
 public class ProductDetailsPagerFragment extends Fragment {
 
 	private static final String ARG_POSITION = "position";
+	private static final String ARG_TITLE = "title";
 	private int position;
+	private String title;
+
 
 	Utility util;
 
 	private AppPreferences preferences;
 	private static ProductDetails productDetails;
 
-	public static ProductDetailsPagerFragment newInstance(int position,ProductDetails productDetails) {
+	public static ProductDetailsPagerFragment newInstance(int position,ProductDetails productDetails,String title) {
 
 		ProductDetailsPagerFragment.productDetails = productDetails;
 		ProductDetailsPagerFragment f = new ProductDetailsPagerFragment();
 		Bundle b = new Bundle();
 		b.putInt(ARG_POSITION, position);
+		b.putString(ARG_TITLE,title);
 		f.setArguments(b);
 		return f;
 	}
@@ -73,6 +80,7 @@ public class ProductDetailsPagerFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 
 		position = getArguments().getInt(ARG_POSITION);
+		title = getArguments().getString(ARG_TITLE);
 
 	}
 
@@ -86,13 +94,15 @@ public class ProductDetailsPagerFragment extends Fragment {
 
 		LinearLayout baseView = (LinearLayout) inflater.inflate(R.layout.product_details_pager_fragment, null);
 
-		if(position == 1){
+		if(title.equals("ADDITIONAL INFO")){
 			addAdditionInfoView(baseView);
-		}else if(position == 2){
+		}else if(title.equals("REVIEWS")){
 			addReviewLayout(baseView);
 			//addReviewLayout(baseView);
-		}else if(position == 0) {
+		}else if(title.equals("DESCRIPTION")) {
 			addDescriptionView(baseView);
+		}else {
+			addSampleView(baseView);
 		}
 
 		return baseView;
@@ -164,5 +174,41 @@ public class ProductDetailsPagerFragment extends Fragment {
 
 	}
 
+	public void addSampleView(LinearLayout baseView){
+
+
+		LayoutInflater inflate = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View sampleRootview = inflate.inflate(R.layout.layout_sample, null);
+
+		ArrayList<ProductDetails.ProductSample> productSampleArray = productDetails.productSamples;
+		TextView txt = (TextView) sampleRootview.findViewById(R.id.txt_sample_title);
+		txt.setText(productSampleArray.get(0).sample_label);
+
+		LinearLayout lay_= (LinearLayout) sampleRootview.findViewById(R.id.lay_sample_container);
+
+		for(final ProductDetails.ProductSample productSample : productSampleArray){
+
+			com.rey.material.widget.TextView sampleTxt = new com.rey.material.widget.TextView(getActivity());
+			sampleTxt.setText("• " + productSample.sample_label_item);
+			sampleTxt.setTag(productSample.sample_url);
+			sampleTxt.setLinksClickable(true);
+			sampleTxt.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (productSample.sample_url.length() > 0) {
+						Intent i = new Intent(Intent.ACTION_VIEW);
+						i.setData(Uri.parse(productSample.sample_url));
+						startActivity(i);
+					}
+
+				}
+			});
+
+			sampleTxt.setGravity(Gravity.CENTER_VERTICAL);
+			lay_.addView(sampleTxt);
+		}
+		baseView.addView(sampleRootview);
+
+	}
 
 }

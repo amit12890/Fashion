@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_register_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/lay_title"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="30dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_card"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Contact Information"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:background="#e5e5e5"
+                android:visibility="visible" />
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/edt_fname"
+                style="@style/Material.Widget.EditText.Light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:hint="First Name"
+                android:inputType="textPersonName"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textColor="#333333"
+                app:et_dividerColor="#7B1FA2"
+                app:et_dividerErrorColor="#D32F2F"
+                app:et_dividerHeight="1dp"
+                app:et_helper="This is required"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_labelTextSize="12sp"
+                app:et_supportMode="helper"
+                app:et_supportTextColor="#D32F2F"
+                app:et_supportTextErrorColor="#D32F2F" />
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/edt_lname"
+                style="@style/Material.Widget.EditText.Light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textColor="#333333"
+                app:et_dividerColor="#7B1FA2"
+                app:et_dividerErrorColor="#D32F2F"
+                app:et_dividerHeight="1dp"
+                app:et_helper="This is required"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_labelTextSize="12sp"
+                app:et_supportMode="helper"
+                app:et_supportTextColor="#D32F2F"
+                app:et_supportTextErrorColor="#D32F2F" />
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/edt_company"
+                style="@style/Material.Widget.EditText.Light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Company"
+                android:inputType="text"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textColor="#333333"
+                app:et_dividerColor="#7B1FA2"
+                app:et_dividerErrorColor="#D32F2F"
+                app:et_dividerHeight="1dp"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_labelTextSize="12sp"
+                app:et_supportMode="helper"
+                app:et_supportTextColor="#D32F2F"
+                app:et_supportTextErrorColor="#D32F2F" />
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/edt_telephone"
+                style="@style/Material.Widget.EditText.Light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Telephone"
+                android:inputType="phone"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textColor="#333333"
+                app:et_dividerColor="#7B1FA2"
+                app:et_dividerErrorColor="#D32F2F"
+                app:et_dividerHeight="1dp"
+                app:et_helper="This is required"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_labelTextSize="12sp"
+                app:et_supportMode="helper"
+                app:et_supportTextColor="#D32F2F"
+                app:et_supportTextErrorColor="#D32F2F" />
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/edt_fax"
+                style="@style/Material.Widget.EditText.Light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Fax"
+                android:inputType="text"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textColor="#333333"
+                app:et_dividerColor="#7B1FA2"
+                app:et_dividerErrorColor="#D32F2F"
+                app:et_dividerHeight="1dp"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_labelTextSize="12sp"
+                app:et_supportMode="helper"
+                app:et_supportTextColor="#D32F2F"
+                app:et_supportTextErrorColor="#D32F2F" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_card"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Address"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:background="#e5e5e5"
+                android:visibility="visible" />
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/edt_street_add"
+                style="@style/Material.Widget.EditText.Light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:hint="Street Address"
+                android:inputType="text"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textColor="#333333"
+                app:et_dividerColor="#7B1FA2"
+                app:et_dividerErrorColor="#D32F2F"
+                app:et_dividerHeight="1dp"
+                app:et_helper="This is required"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_labelTextSize="12sp"
+                app:et_supportMode="helper"
+                app:et_supportTextColor="#D32F2F"
+                app:et_supportTextErrorColor="#D32F2F" />
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/edt_area"
+                style="@style/Material.Widget.EditText.Light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Area"
+                android:inputType="text"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textColor="#333333"
+                app:et_dividerColor="#7B1FA2"
+                app:et_dividerErrorColor="#D32F2F"
+                app:et_dividerHeight="1dp"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_labelTextSize="12sp"
+                app:et_supportMode="helper"
+                app:et_supportTextColor="#D32F2F"
+                app:et_supportTextErrorColor="#D32F2F" />
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/edt_city"
+                style="@style/Material.Widget.EditText.Light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="City"
+                android:inputType="text"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textColor="#333333"
+                app:et_dividerColor="#7B1FA2"
+                app:et_dividerErrorColor="#D32F2F"
+                app:et_dividerHeight="1dp"
+                app:et_helper="This is required"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_labelTextSize="12sp"
+                app:et_supportMode="helper"
+                app:et_supportTextColor="#D32F2F"
+                app:et_supportTextErrorColor="#D32F2F" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_country_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Country"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    android:visibility="visible"
+                    />
+
+                <com.rey.material.widget.TextView
+                    android:id="@+id/edt_country_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Choose Country"
+                    app:et_supportTextErrorColor="#ff0000"/>
+
+                <View
+                    android:id="@+id/country_separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/actionbar_color"/>
+
+                <TextView
+                    android:id="@+id/txt_country_error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textColor="#D32F2F"
+                    android:visibility="visible"
+                    android:textSize="12sp"
+                    android:text="This is required."
+                    />
+
+
+            </LinearLayout>
+
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/edt_state"
+                style="@style/Material.Widget.EditText.Light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="State/Province"
+                android:inputType="text"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textColor="#333333"
+                app:et_dividerColor="#7B1FA2"
+                app:et_dividerErrorColor="#D32F2F"
+                app:et_dividerHeight="1dp"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_labelTextSize="12sp"
+                app:et_supportMode="helper"
+                app:et_supportTextColor="#D32F2F"
+                app:et_supportTextErrorColor="#D32F2F" />
+
+            <com.rey.material.widget.EditText
+                android:id="@+id/edt_zip"
+                style="@style/Material.Widget.EditText.Light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:hint="Zip/Postal Code"
+                android:inputType="textPostalAddress"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                android:textColor="#333333"
+                app:et_dividerColor="#7B1FA2"
+                app:et_dividerErrorColor="#D32F2F"
+                app:et_dividerHeight="1dp"
+                app:et_helper="This is required"
+                app:et_labelTextColor="#7B1FA2"
+                app:et_labelTextSize="12sp"
+                app:et_supportMode="helper"
+                app:et_supportTextColor="#D32F2F"
+                app:et_supportTextErrorColor="#D32F2F" />
+
+
+            <LinearLayout
+                android:id="@+id/lay_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lay_submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/drawer_pressed"
+            android:orientation="horizontal">
+
+            <com.rey.material.widget.Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00ffffff"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFFFF"
+                android:textSize="16sp"
+                android:translationZ="2dp" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+

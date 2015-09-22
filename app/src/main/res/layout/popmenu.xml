@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llSortChangePopup"
+    android:layout_width="210dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/lay_after_login_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/lay_account_info"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:orientation="horizontal">
+
+            <com.fashion.krish.customview.TintableImageView
+                android:layout_marginLeft="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                app:tint="@color/color_selector"
+                android:src="@drawable/right_acc_info_icon"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/action_account_info"
+                android:layout_marginLeft="10dp"
+                android:textColor="@drawable/popup_text_color"
+                android:textSize="14sp"
+                android:paddingTop="5dp"
+                android:gravity="center_vertical"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DEDEDE"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F5F5F5"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lay_my_orders"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.fashion.krish.customview.TintableImageView
+                android:layout_marginLeft="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                app:tint="@color/color_selector"
+                android:src="@drawable/right_orders_icon"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/action_orders"
+                android:layout_marginLeft="10dp"
+                android:textColor="@drawable/popup_text_color"
+                android:textSize="14sp"
+                android:paddingTop="5dp"
+                android:gravity="center_vertical"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DEDEDE"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F5F5F5"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_wishlist"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.fashion.krish.customview.TintableImageView
+                android:layout_marginLeft="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                app:tint="@color/color_selector"
+                android:src="@drawable/right_wishlist_icon"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/action_wishlist"
+                android:layout_marginLeft="10dp"
+                android:textColor="@drawable/popup_text_color"
+                android:textSize="14sp"
+                android:paddingTop="5dp"
+                android:gravity="center_vertical"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DEDEDE"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F5F5F5"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay_before_login_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/lay_login"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:orientation="horizontal">
+
+            <com.fashion.krish.customview.TintableImageView
+                android:layout_marginLeft="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                app:tint="@color/color_selector"
+                android:src="@drawable/right_login_icon"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/login"
+                android:layout_marginLeft="10dp"
+                android:textColor="@drawable/popup_text_color"
+                android:textSize="14sp"
+                android:paddingTop="5dp"
+                android:gravity="center_vertical"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DEDEDE"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F5F5F5"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lay_shopping_cart"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:orientation="horizontal">
+
+        <com.fashion.krish.customview.TintableImageView
+            android:layout_marginLeft="5dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            app:tint="@color/color_selector"
+            android:src="@drawable/right_cart_icon"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/action_shopping_cart"
+            android:layout_marginLeft="10dp"
+            android:textColor="@drawable/popup_text_color"
+            android:textSize="14sp"
+            android:paddingTop="5dp"
+            android:gravity="center_vertical"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DEDEDE"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F5F5F5"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay_setting"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.fashion.krish.customview.TintableImageView
+            android:layout_marginLeft="5dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            app:tint="@color/color_selector"
+            android:src="@drawable/setting_icon"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/action_settings"
+            android:layout_marginLeft="10dp"
+            android:textColor="@drawable/popup_text_color"
+            android:textSize="14sp"
+            android:paddingTop="5dp"
+            android:gravity="center_vertical"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay_last_sep"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DEDEDE"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F5F5F5"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay_logout"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.fashion.krish.customview.TintableImageView
+            android:layout_marginLeft="5dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            app:tint="@color/color_selector"
+            android:src="@drawable/right_logout_icon"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/action_logout"
+            android:layout_marginLeft="10dp"
+            android:textColor="@drawable/popup_text_color"
+            android:textSize="14sp"
+            android:paddingTop="5dp"
+            android:gravity="center_vertical"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

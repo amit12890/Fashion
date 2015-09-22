@@ -1,0 +1,542 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_productDetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shopping_cart_bg_repeat">
+
+
+    <RelativeLayout
+        android:id="@+id/lay_title"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+
+        <LinearLayout
+            android:id="@+id/lay_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:src="@drawable/back_arrow_icon" />
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="Title"
+                android:textColor="@color/drawer_default_white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:id="@+id/float_cart_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/lay_float_bottom"
+        android:layout_below="@+id/lay_title"
+        android:layout_marginTop="5dp"
+        android:overScrollMode="never"
+       >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/lay_non_empty_cart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:id="@+id/lay_float_product_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/lay_discount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_card"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp">
+
+                        <RelativeLayout
+                            android:id="@+id/lay_discount_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_discount" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="40dp"
+                                android:text="Discounts Code"
+                                android:textSize="16sp" />
+
+                            <ImageView
+                                android:id="@+id/img_discount_arrow"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_arrow" />
+
+
+                        </RelativeLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/lay_discount_child"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginTop="5dp"
+                                android:background="#e5e5e5" />
+
+                            <com.rey.material.widget.EditText
+                                android:id="@+id/edt_discount"
+                                style="@style/Material.Widget.EditText.Light"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:hint="Enter your coupon code"
+                                app:et_dividerColor="#7B1FA2"
+                                app:et_dividerErrorColor="#D32F2F"
+                                app:et_dividerHeight="1dp"
+                                app:et_helper="This is required"
+                                app:et_labelTextColor="#7B1FA2"
+                                app:et_labelTextSize="16sp"
+                                app:et_supportMode="helper"
+                                app:et_supportTextColor="#D32F2F"
+                                app:et_supportTextErrorColor="#D32F2F" />
+
+                            <RelativeLayout
+                                android:id="@+id/lay_discount_applied"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:id="@+id/txt_discount"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="$5120"
+                                    android:layout_alignParentRight="true"/>
+
+                                <TextView
+                                    android:id="@+id/txt_discount_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxWidth="250dp"
+                                    android:text="Disount"/>
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/lay_apply_coupon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/tags_rounded_corners"
+                                android:orientation="vertical">
+
+                                <com.rey.material.widget.Button
+                                    android:id="@+id/btn_apply_coupon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:background="#00ffffff"
+                                    android:padding="5dp"
+                                    android:text="Apply Coupon"
+                                    android:textColor="#ffffff" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/background_card"
+                        android:layout_marginTop="10dp"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp">
+
+                            <com.fashion.krish.customview.AutoFitTextView
+                                android:id="@+id/txt_subtotal_value"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:gravity="right"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="10dp"
+                                app:maxTextSize="16sp"
+                                android:text="$ 570"/>
+
+                            <TextView
+                                android:id="@+id/txt_subtotal_label"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@+id/txt_subtotal_value"
+                                android:layout_marginLeft="10dp"
+                                android:textSize="16sp"
+                                android:text="Sub Total:"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginTop="5dp"
+                                android:background="#e5e5e5" />
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/lay_discount_"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp">
+
+                            <com.fashion.krish.customview.AutoFitTextView
+                                android:id="@+id/txt_discount_value"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:gravity="right"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="10dp"
+                                app:maxTextSize="16sp"
+                                android:text="$ 570"/>
+
+                            <TextView
+                                android:id="@+id/txt_discount_label"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@+id/txt_discount_value"
+                                android:layout_marginLeft="10dp"
+                                android:textSize="16sp"
+                                android:text="Discount:"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginTop="5dp"
+                                android:background="#e5e5e5" />
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/lay_tax"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp">
+
+                            <com.fashion.krish.customview.AutoFitTextView
+                                android:id="@+id/txt_tax_value"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:gravity="right"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="10dp"
+                                app:maxTextSize="16sp"
+                                android:text="$ 570"/>
+
+                            <TextView
+                                android:id="@+id/txt_tax_label"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@+id/txt_tax_value"
+                                android:layout_marginLeft="10dp"
+                                android:textSize="16sp"
+                                android:text="Tax:"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginTop="5dp"
+                                android:background="#e5e5e5" />
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp">
+
+                            <com.fashion.krish.customview.AutoFitTextView
+                                android:id="@+id/txt_grand_total_value"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:gravity="right"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="10dp"
+                                app:maxTextSize="16sp"
+                                android:textStyle="bold"
+                                android:text="$ 570"/>
+
+                            <TextView
+                                android:id="@+id/txt_grand_total_label"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@+id/txt_grand_total_value"
+                                android:layout_marginLeft="10dp"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:text="Grand Total:"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginTop="5dp"
+                                android:background="#e5e5e5" />
+
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_proceed_to_checkout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/tags_rounded_corners"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp">
+
+                        <com.rey.material.widget.Button
+                            android:id="@+id/btn_proceed_to_checkout"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="#00ffffff"
+                            android:padding="5dp"
+                            android:text="PROCEED TO CHECKOUT"
+                            android:textColor="#ffffff" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lay_empty_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:layout_marginTop="150dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/img_shopping_cart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/cart_empty_icon" />
+
+                    <TextView
+                        android:id="@+id/txt_oops"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img_shopping_cart"
+                        android:layout_centerHorizontal="true"
+                        android:text="OOPS!"
+                        android:textColor="#333333"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_oops"
+                        android:layout_centerHorizontal="true"
+                        android:text="Your cart is feeling quite empty"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#c0c0c0"
+                android:layout_alignParentTop="true" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f5f5f5"
+                android:layout_alignParentLeft="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/trustpay_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="TrustPay 100% money back gaurantee"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/free_returns_img"
+                    android:background="#FACE80"
+                    android:padding="20dp"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/cash_on_delivery_img"
+                    android:background="#D0689A"
+                    android:padding="20dp"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/easy_cancellations_img"
+                    android:background="#9B56CB"
+                    android:padding="20dp"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/original_products_img"
+                    android:background="#7E50A6"
+                    android:padding="20dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/mastercard_img"
+                    android:background="#00ffffff"
+                    android:padding="20dp"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#c0c0c0"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#f5f5f5"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/verified_img"
+                    android:background="#00ffffff"
+                    android:padding="20dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+</RelativeLayout>
+

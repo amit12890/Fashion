@@ -11,9 +11,9 @@
         android:layout_width="@dimen/navdrawer_width"
         android:layout_height="50dp"
         android:layout_below="@id/categoryExpandableListView"
-        android:background="@drawable/holo_red_grey_ripple"
         android:layout_marginTop="1dp"
-        android:paddingLeft="10dp">
+        android:background="#eaeaea"
+        android:paddingLeft="15dp">
 
         <com.fashion.krish.customview.TintableImageView
             android:id="@+id/img_store_locate"
@@ -49,12 +49,12 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/navdrawer_lay_share_app"
+        android:id="@+id/navdrawer_lay_settings"
         android:layout_width="@dimen/navdrawer_width"
         android:layout_height="50dp"
+        android:background="#eaeaea"
         android:layout_below="@id/navdrawer_lay_store_locate"
-        android:background="@drawable/holo_red_grey_ripple"
-        android:paddingLeft="10dp">
+        android:paddingLeft="15dp">
 
         <com.fashion.krish.customview.TintableImageView
             android:id="@+id/img_setting"
@@ -73,17 +73,17 @@
             android:textColor="@drawable/select_gray_white"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/img_setting"
-            android:text="@string/action_share_app"/>
+            android:text="@string/action_settings"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/navdrawer_lay_contact_us"
         android:layout_width="@dimen/navdrawer_width"
         android:layout_height="50dp"
-        android:layout_below="@id/navdrawer_lay_share_app"
-        android:background="@drawable/holo_red_grey_ripple"
+        android:layout_below="@id/navdrawer_lay_settings"
+        android:background="#eaeaea"
         android:gravity="center_vertical"
-        android:paddingLeft="10dp">
+        android:paddingLeft="15dp">
 
         <com.fashion.krish.customview.TintableImageView
             android:id="@+id/img_contact"
@@ -105,129 +105,11 @@
             android:text="@string/action_contact_us"/>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/navdrawer_lay_customer_service"
-        android:layout_width="@dimen/navdrawer_width"
-        android:layout_height="50dp"
-        android:background="@drawable/holo_darkgrey_red_ripple"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp">
-
-        <com.fashion.krish.customview.TintableImageView
-            android:id="@+id/img_arrow"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            app:tint="@drawable/select_gray_white"
-            android:src="@drawable/arrow_side"
-            />
-
-        <TextView
-            android:id="@+id/txt_customer_service"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="#d3d3d3"
-            android:layout_toRightOf="@+id/img_arrow"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-
-            android:text="@string/action_customer_service"/>
-    </RelativeLayout>
-
     <LinearLayout
+        android:id="@+id/lay_menu_cms"
         android:layout_width="@dimen/navdrawer_width"
-        android:layout_height="2dp"
-        android:orientation="vertical">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#5E5D5F"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000"/>
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/navdrawer_lay_privacy"
-        android:layout_width="@dimen/navdrawer_width"
-        android:layout_height="50dp"
-        android:layout_below="@id/navdrawer_lay_share_app"
-        android:background="@drawable/holo_darkgrey_red_ripple"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp">
-        <com.fashion.krish.customview.TintableImageView
-            android:id="@+id/img_arrow1"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            app:tint="@drawable/select_gray_white"
-            android:src="@drawable/arrow_side"
-            />
-
-        <TextView
-            android:id="@+id/txt_privacy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="#d3d3d3"
-            android:layout_toRightOf="@+id/img_arrow1"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:text="@string/action_privacy"/>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="@dimen/navdrawer_width"
-        android:layout_height="2dp"
-        android:orientation="vertical">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#5E5D5F"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000000"/>
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/navdrawer_lay_rewards"
-        android:layout_width="@dimen/navdrawer_width"
-        android:layout_height="50dp"
-        android:layout_below="@id/navdrawer_lay_share_app"
-        android:background="@drawable/holo_darkgrey_red_ripple"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp">
-
-        <com.fashion.krish.customview.TintableImageView
-            android:id="@+id/img_arrow2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            app:tint="@drawable/select_gray_white"
-            android:src="@drawable/arrow_side"
-            />
-
-        <TextView
-            android:id="@+id/txt_rewards"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="#d3d3d3"
-            android:layout_toRightOf="@+id/img_arrow2"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:text="@string/action_rewards"/>
-    </RelativeLayout>
-
-
-
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
 
 
 </LinearLayout>

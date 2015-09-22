@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lay_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -69,6 +70,7 @@
             android:gravity="center"
             android:background="@drawable/holo_red_white_ripple">
             <ImageView
+                android:id="@+id/img_switch_lay"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/list_icon"
@@ -89,22 +91,25 @@
         android:gravity="center"
         android:layout_alignParentBottom="true"
         android:visibility="gone"/>
+    
+    <RelativeLayout
+        android:id="@+id/lay_loading"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="50dp"
+        android:visibility="gone"/>
+
     <GridView
         android:id="@+id/gridview_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="2"
-        android:layout_margin="5dp"
-        android:verticalSpacing="-5dp"
-        android:horizontalSpacing="2dp"
         android:stretchMode="columnWidth"
         android:layout_below="@+id/lay_header"
-        android:layout_above="@+id/txt_loading"
+        android:layout_above="@+id/lay_loading"
         android:gravity="center"
         android:scrollbars="none"
-        android:overScrollMode="never"
-
-        />
+        android:overScrollMode="never"/>
 
 
     <ListView
@@ -115,12 +120,10 @@
         android:scrollbars="none"
         android:overScrollMode="never"
         android:layout_below="@+id/lay_header"
-        android:layout_above="@+id/txt_loading"
+        android:layout_above="@+id/lay_loading"
         android:divider="@null"
         android:visibility="gone"
         />
-
-
 
 
 </RelativeLayout>

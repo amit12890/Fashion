@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.fashion.krish.AppController;
 import com.fashion.krish.R;
+import com.fashion.krish.activity.DashboardActivity;
 import com.fashion.krish.utility.Utility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -56,7 +58,8 @@ public class LoginFragment extends Fragment{
         tabs.setIndicatorColor(Color.WHITE);
         tabs.setDividerColor(Color.TRANSPARENT);
         tabs.setIndicatorHeight((int) Utility.convertDpToPixel(7, getActivity()));
-        tabs.setTabBackground(R.drawable.holo_red_white_ripple);
+        tabs.setBackgroundColor(Color.parseColor(AppController.SECONDARY_COLOR));
+        tabs.setTextColorResource(R.color.tab_text_color);
         tabs.setIndicatorColor(Color.WHITE);
 
         pager = (ViewPager) rootView.findViewById(R.id.login_pager);
@@ -99,6 +102,12 @@ public class LoginFragment extends Fragment{
             return LoginSignUpFragment.newInstance(position);
         }
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        DashboardActivity.animateToggle(1, 0);
     }
 
 }

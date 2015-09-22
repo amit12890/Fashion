@@ -9,6 +9,7 @@ public class Product {
             product_short_desc="",product_desc="",product_link="",product_icon="",product_price_regular="",
             product_type="",product_category="",product_price_special="",product_price_to,product_price_from;
 
-    public int product_in_stock=0,product_is_salable=0,product_has_gallery=0,product_has_option=0,product_rating_summery=0,product_review_count=0;
+    public int product_in_stock=0,product_is_salable=0,product_is_new = 0,product_has_gallery=0,
+            product_has_option=0,product_rating_summery=0,product_review_count=0;
 
 }

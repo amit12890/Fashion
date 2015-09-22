@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="115dp"
+    android:layout_height="120dp"
     android:orientation="horizontal">
 
     <RelativeLayout
         android:id="@+id/lay_productview"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="115dp"
         android:background="@drawable/background_card"
-        android:layout_marginTop="3dp"
+
        >
 
         <ImageView
             android:id="@+id/img_product_main"
-            android:layout_width="75dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/product_sample" />
+            android:layout_marginRight="10dp"
+            android:src="@drawable/vip_membership" />
 
         <ImageView
             android:id="@+id/img_wishlist"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/wishlisted"
+            android:src="@drawable/wishlist_icon_h"
             android:layout_margin="10dp"/>
 
 
@@ -59,10 +60,10 @@
         <TextView
             android:id="@+id/txt_product_name"
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/txt_regular_price"
             android:layout_toRightOf="@+id/img_product_main"
-            android:lines="2"
+            android:maxLines="2"
             android:layout_marginTop="5dp"
             android:text="Product Name"
             android:textSize="14sp"
@@ -75,7 +76,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_product_name"
             android:layout_toRightOf="@+id/img_product_main"
-            style="?android:attr/ratingBarStyleSmall"/>
+            android:isIndicator="true"
+            style="@style/RatingBar"/>
+        <ImageView
+            android:id="@+id/img_product_tag"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/new_sale_tag"
+            />
 
     </RelativeLayout>
 

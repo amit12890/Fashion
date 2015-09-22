@@ -8,7 +8,6 @@
         android:id="@+id/list_filter_category"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:background="@color/drawer_pressed"
         android:divider="@null"
         android:overScrollMode="never"
         android:scrollbars="none"

@@ -2,11 +2,11 @@
 
     <item
         android:id="@+id/action_more"
-        android:icon="@android:drawable/ic_menu_more"
+        android:icon="@drawable/right_nav_icon"
         android:orderInCategory="1"
-        android:showAsAction="always"
+        android:showAsAction="ifRoom"
         android:title="More">
-        <menu>
+        <!--<menu>
             <item
                 android:id="@+id/action_one"
                 android:icon="@android:drawable/ic_popup_sync"
@@ -15,6 +15,6 @@
                 android:id="@+id/action_two"
                 android:icon="@android:drawable/ic_dialog_info"
                 android:title="About"/>
-        </menu>
+        </menu>-->
     </item>
 </menu>

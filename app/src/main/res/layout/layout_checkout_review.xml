@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lay_checkout_review"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/lay_ordered_products"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_card"
+                android:layout_margin="10dp"
+                android:orientation="vertical" />
+
+
+            <LinearLayout
+                android:id="@+id/lay_total"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/background_card"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp">
+
+                    <com.fashion.krish.customview.AutoFitTextView
+                        android:id="@+id/txt_subtotal_value"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="right"
+                        android:text="$ 570"
+                        app:maxTextSize="16sp" />
+
+                    <com.fashion.krish.customview.AutoFitTextView
+                        android:id="@+id/txt_subtotal_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toLeftOf="@+id/txt_subtotal_value"
+                        android:gravity="right"
+                        android:text="Sub Total:"
+                        android:textSize="14sp"
+                        app:maxTextSize="14sp"
+                        app:minTextSize="13sp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="5dp"
+                        android:background="#e5e5e5" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="30dp">
+
+                    <com.fashion.krish.customview.AutoFitTextView
+                        android:id="@+id/txt_shipping_tax_value"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="right"
+                        android:text="$ 570"
+                        app:maxTextSize="14sp"
+                        />
+
+                    <com.fashion.krish.customview.AutoFitTextView
+                        android:id="@+id/txt_shipping_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toLeftOf="@+id/txt_shipping_tax_value"
+                        android:gravity="right"
+                        android:text="Shipping Handling Tax: "
+                        android:textSize="14sp"
+                        app:maxTextSize="14sp"
+                        app:minTextSize="13sp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="5dp"
+                        android:background="#e5e5e5"
+                        />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp">
+
+                    <com.fashion.krish.customview.AutoFitTextView
+                        android:id="@+id/txt_grandtotal_value"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="right"
+                        android:text="$ 570"
+                        android:textStyle="bold"
+                        app:maxTextSize="14sp" />
+
+                    <com.fashion.krish.customview.AutoFitTextView
+                        android:id="@+id/txt_grandtotal_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toLeftOf="@+id/txt_grandtotal_value"
+                        android:gravity="right"
+                        android:text="Grand Total:"
+                        android:textSize="14sp"
+                        app:maxTextSize="14sp"
+                        android:textStyle="bold"
+                        app:minTextSize="13sp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="5dp"
+                        android:background="#e5e5e5" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lay_place_order_btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/lay_shipping_methods"
+                android:layout_margin="10dp"
+                android:background="@color/drawer_pressed"
+                android:orientation="horizontal">
+
+                <com.rey.material.widget.Button
+                    android:id="@+id/btn_place_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00ffffff"
+                    android:text="Place Order"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFFFF"
+                    android:textSize="16sp"
+                    android:translationZ="2dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
+
+
+

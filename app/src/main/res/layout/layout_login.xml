@@ -41,7 +41,8 @@
                 app:et_dividerColor="#7B1FA2"
                 app:et_labelTextSize="16sp"
                 app:et_dividerHeight="1dp"
-                app:et_dividerErrorColor="#D32F2F"/>
+                app:et_dividerErrorColor="#D32F2F"
+                />
 
             <com.rey.material.widget.EditText
                 style="@style/Material.Widget.EditText.Light"
@@ -63,18 +64,27 @@
                 app:et_dividerErrorColor="#D32F2F"
                 android:layout_marginTop="25dp" />
 
-            <Button
-                android:id="@+id/btn_login"
+            <LinearLayout
+                android:id="@+id/lay_login_btn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:textColor="#FFFFFFFF"
-                android:textSize="16sp"
-                android:background="@drawable/button_red_white_ripple"
-                android:text="@string/login"
-                android:textAllCaps="false"
-                android:translationZ="2dp"
-                android:layout_marginTop="40dp"
-                android:elevation="1dp" />
+                android:orientation="horizontal"
+                android:background="@color/drawer_pressed"
+                android:layout_marginTop="40dp">
+
+                <com.rey.material.widget.Button
+                    android:id="@+id/btn_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="#FFFFFFFF"
+                    android:background="#00ffffff"
+                    android:textSize="16sp"
+                    android:text="@string/login"
+                    android:textAllCaps="false"
+                    android:translationZ="2dp"
+                     />
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -116,36 +126,42 @@
             android:orientation="horizontal"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp">
+
             <LinearLayout
+                android:id="@+id/lay_facebook"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:paddingBottom="5dp"
                     android:src="@drawable/facebook_icon"
                     android:layout_gravity="center_horizontal"
                     />
+
+
                 <TextView
                     android:layout_width="75dp"
                     android:layout_height="wrap_content"
                     android:text="Facebook"
                     android:textSize="16sp"
                     android:textColor="#333333"
-                    android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:layout_gravity="center_horizontal"/>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lay_twitter"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:paddingBottom="5dp"
                     android:src="@drawable/twitter_icon"
                     android:layout_gravity="center_horizontal"
                     />
@@ -155,18 +171,19 @@
                     android:text="Twitter"
                     android:textSize="16sp"
                     android:textColor="#333333"
-                    android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:layout_gravity="center_horizontal"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/lay_gplus"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:paddingBottom="5dp"
                     android:src="@drawable/gplus_icon"
                     android:layout_gravity="center_horizontal"
                     />
@@ -177,7 +194,6 @@
                     android:text="Google"
                     android:textSize="16sp"
                     android:textColor="#333333"
-                    android:layout_marginTop="5dp"
                     android:layout_gravity="center_horizontal"/>
             </LinearLayout>
 

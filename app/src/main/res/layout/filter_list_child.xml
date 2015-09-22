@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_filter_child"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="45dp"
@@ -16,6 +17,7 @@
         android:gravity="center"
         android:text="TextView"
         android:textColor = "#212121"
+        app:maxTextSize="14sp"
         android:layout_centerVertical="true"
         android:singleLine="true" />
 
@@ -26,9 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        app:rbd_strokeColor="#7B1FA2"
         android:checked="false"
         android:enabled="false"
+        android:visibility="gone"
         android:layout_marginRight="10dp"/>
 
     <ImageView

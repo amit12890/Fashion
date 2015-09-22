@@ -1,14 +1,14 @@
 package com.fashion.krish.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,8 +24,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.fashion.krish.AppController;
 import com.fashion.krish.R;
 import com.fashion.krish.RestClient;
+import com.fashion.krish.activity.DashboardActivity;
 import com.fashion.krish.activity.ProductDetailActivity;
 import com.fashion.krish.adapter.FilterCategoryAdapter;
 import com.fashion.krish.adapter.FilterValuesAdapter;
@@ -35,6 +36,9 @@ import com.fashion.krish.model.FilterCategory;
 import com.fashion.krish.model.FilterValue;
 import com.fashion.krish.model.Product;
 import com.fashion.krish.utility.Utility;
+import com.rey.material.drawable.RippleDrawable;
+import com.rey.material.util.ColorUtil;
+import com.rey.material.widget.Button;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,14 +51,14 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
     private String category_id,category_name;
     private GridView productGrid;
     private Utility util;
-    private MaterialDialog dialog, sortDialog;
+    private MaterialDialog sortDialog;
     private ProductAdapter productAdapter,productAdapter1;
     private ListView productList;
-    private ArrayList<Product> productArrayList;
+    private ArrayList<Product> productArrayList,fullProductList;
     private LinearLayout laySwitchLayout;
     private boolean isGrid = true;
     private DrawerLayout drawerLayout;
-    private RelativeLayout mDrawerFilterLayout,mDrawerOtherLayout;
+    private RelativeLayout mDrawerFilterLayout,mDrawerOtherLayout,mRootLayout;
     private LinearLayout layFilterItems,layDashboardItems,layFilter,laySort;
     private ImageView imgLogo;
     private TextView txtTitle;
@@ -64,20 +68,22 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
     private ArrayList<FilterCategory> filterCategories;
     private HashMap<String,String> sortMap;
     private int currentSelectedItem = 0;
-    int limit=10,offset=0;
-    private TextView txtLoading;
+    int offset=0;
+    //private TextView txtLoading;
+    private RelativeLayout layLoading;
     private boolean has_more_data = false, is_loading_grid =false;
     private boolean is_loading_list =false;
     public static HashMap<String,String> filterValuesMap;
     private Button btnClear,btnApply;
     public static String defaultSort;
     private ArrayList<TextView> viewArray;
+    private ImageView imgLaySwitch;
+    int LIMIT = 10;
 
     public ProductListFragment(String category_id,String category_name) {
         // Required empty public constructor
         this.category_id = category_id;
         this.category_name = category_name;
-        util = new Utility(getActivity());
     }
 
     @Override
@@ -93,10 +99,16 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
         View rootView = inflater.inflate(R.layout.fragment_product_list, container, false);
         filterValuesMap = new HashMap<String,String>();
         util = new Utility(getActivity());
+
+        if(DashboardActivity.selectedFragment instanceof BannerDetailsFragment){
+            DashboardActivity.animateToggle(0, 1);
+        }
+
         defaultSort = "";
         init(rootView);
-        getProducts();
-        dialog.show();
+
+
+        util.showAnimatedLogoProgressBar(mRootLayout);
         getFilterData();
 
         filterCategoryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -152,36 +164,20 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getActivity(), ProductDetailActivity.class);
-                i.putExtra("product_id", productArrayList.get(position).product_entity_id);
-                i.putExtra("product_sku", productArrayList.get(position).product_sku);
-                i.putExtra("product_name", productArrayList.get(position).product_name);
-                i.putExtra("product_price_regular", productArrayList.get(position).product_price_regular);
-                i.putExtra("product_rate", productArrayList.get(position).product_rating_summery);
+                i.putExtra("product_id", fullProductList.get(position).product_entity_id);
+                i.putExtra("product_sku", fullProductList.get(position).product_sku);
+                i.putExtra("product_name", fullProductList.get(position).product_name);
+                i.putExtra("product_price_regular", fullProductList.get(position).product_price_regular);
+                i.putExtra("product_rate", fullProductList.get(position).product_rating_summery);
                 i.putExtra("category_name", category_name);
                 startActivity(i);
 
-
-                /*ProductDetailsFragment productDetailsFragment = new
-                        ProductDetailsFragment(productArrayList.get(position).product_entity_id);
-                updateFragment(productDetailsFragment);
-                layFilterItems.setVisibility(View.GONE);
-                layDashboardItems.setVisibility(View.VISIBLE);
-                imgLogo.setVisibility(View.GONE);
-                txtTitle.setVisibility(View.GONE);*/
-                //updateFragment(productDetailsFragment);
             }
         });
 
         productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*ProductDetailsFragment productDetailsFragment = new
-                        ProductDetailsFragment(productArrayList.get(position).product_entity_id);
-                updateFragment(productDetailsFragment);
-                layFilterItems.setVisibility(View.GONE);
-                layDashboardItems.setVisibility(View.VISIBLE);
-                imgLogo.setVisibility(View.GONE);
-                txtTitle.setVisibility(View.GONE);*/
                 Intent i = new Intent(getActivity(), ProductDetailActivity.class);
                 i.putExtra("product_id", productArrayList.get(position).product_entity_id);
                 i.putExtra("product_sku", productArrayList.get(position).product_sku);
@@ -190,7 +186,7 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
                 i.putExtra("product_rate", productArrayList.get(position).product_rating_summery);
                 i.putExtra("category_name", category_name);
                 startActivity(i);
-                //updateFragment(productDetailsFragment);
+
             }
         });
 
@@ -207,7 +203,8 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
                     if (l >= totalItemCount && !is_loading_grid) {
                         getProducts();
                         is_loading_grid = true;
-                        txtLoading.setVisibility(View.VISIBLE);
+                        //txtLoading.setVisibility(View.VISIBLE);
+                        layLoading.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -227,7 +224,8 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
                     if (l >= totalItemCount && !is_loading_list) {
                         getProducts();
                         is_loading_list = true;
-                        txtLoading.setVisibility(View.VISIBLE);
+                        //txtLoading.setVisibility(View.VISIBLE);
+                        layLoading.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -246,6 +244,7 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
 
     public void init(View rootView){
 
+        mRootLayout = (RelativeLayout) getActivity().findViewById(R.id.lay_root);
         drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
         mDrawerFilterLayout = (RelativeLayout) getActivity().findViewById(R.id.navdrawerlayout_filer);
         mDrawerOtherLayout = (RelativeLayout) getActivity().findViewById(R.id.navdrawerlayout_other);
@@ -254,32 +253,42 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
         imgLogo = (ImageView) getActivity().findViewById(R.id.img_logo_title);
         txtTitle = (TextView) getActivity().findViewById(R.id.txt_filter_title);
         filterCategoryList = (ListView) getActivity().findViewById(R.id.list_filter_category);
+        filterCategoryList.setBackgroundColor(Color.parseColor(AppController.SECONDARY_COLOR));
         filterValueList = (ListView) getActivity().findViewById(R.id.list_filter_values);
         btnClear = (Button) getActivity().findViewById(R.id.btn_clear_all);
+        btnClear.setBackgroundColor(Color.parseColor(AppController.PRIMARY_COLOR));
         btnClear.setOnClickListener(this);
+
         btnApply = (Button) getActivity().findViewById(R.id.btn_apply);
         btnApply.setOnClickListener(this);
+        btnApply.setBackgroundColor(Color.parseColor(AppController.SECONDARY_COLOR));
 
-        dialog = new MaterialDialog.Builder(getActivity())
-                .content("Please Wait")
-                .progress(true, 0)
-                .cancelable(false)
-                .build();
 
         productGrid = (GridView) rootView.findViewById(R.id.gridview_product);
         productList = (ListView) rootView.findViewById(R.id.listview_product);
+
+        imgLaySwitch = (ImageView) rootView.findViewById(R.id.img_switch_lay);
         laySwitchLayout = (LinearLayout) rootView.findViewById(R.id.lay_switch_layout);
         laySwitchLayout.setOnClickListener(this);
+        laySwitchLayout.setBackgroundColor(Color.parseColor(AppController.SECONDARY_COLOR));
+
         layFilter = (LinearLayout) rootView.findViewById(R.id.lay_filter);
         layFilter.setOnClickListener(this);
         laySort = (LinearLayout) rootView.findViewById(R.id.lay_sort);
         laySort.setOnClickListener(this);
 
-        txtLoading = (TextView) rootView.findViewById(R.id.txt_loading);
-        txtLoading.setVisibility(View.GONE);
+        //txtLoading = (TextView) rootView.findViewById(R.id.txt_loading);
+        //txtLoading.setVisibility(View.GONE);
+
+        layLoading = (RelativeLayout) rootView.findViewById(R.id.lay_loading);
+        layLoading.setVisibility(View.GONE);
+        layLoading.addView(util.getLoadingLayout());
+        layLoading.setVisibility(View.GONE);
 
         productArrayList = new ArrayList<>();
         productArrayList.clear();
+        fullProductList = new ArrayList<>();
+        fullProductList.clear();
         productAdapter = new ProductAdapter(getActivity(), R.layout.product_layout, productArrayList);
         productAdapter.clear();
         productGrid.setAdapter(productAdapter);
@@ -289,6 +298,9 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
         sortMap = new HashMap<>();
         viewArray = new ArrayList<>();
 
+
+        btnClear.setBackgroundDrawable(util.getPrimaryRippleDrawable());
+        btnApply.setBackgroundDrawable(util.getSecondaryRippleDrawable());
     }
 
     private void getProducts(){
@@ -298,13 +310,22 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
             public void run() {
 
                 final String response = new RestClient(getActivity()).getProductForCategory(category_id,
-                        String.valueOf(offset), String.valueOf(limit));
-                if(response.equals("error")) {
+                        String.valueOf(offset), String.valueOf(LIMIT));
+                if(response.equals(RestClient.ERROR)) {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            util.showErrorDialog("Some error has occured. Please try again later", "OK", "");
-                            dialog.dismiss();
+                            util.showErrorDialog(RestClient.ERROR_MESSAGE, "OK", "");
+                            util.hideAnimatedLogoProgressBar();
+                            return;
+                        }
+                    });
+                }else if(response.equals(RestClient.TIMEOUT_ERROR)) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            util.showErrorDialog(RestClient.TIMEOUT_ERROR_MESSAGE, "OK", "");
+                            util.hideAnimatedLogoProgressBar();
                             return;
                         }
                     });
@@ -324,27 +345,31 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
                     }
                     if(jsonObject.has("products")){
 
+                        fullProductList.addAll(util.parseProduct(jsonObject, category_id));
+                        //final ArrayList<Product> tempProduct = util.parseProduct(jsonObject, category_id);
                         productArrayList = util.parseProduct(jsonObject, category_id);;
 
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                dialog.dismiss();
+                                util.hideAnimatedLogoProgressBar();
 
-                                if(isGrid){
+                                if (isGrid) {
 
                                     productAdapter.addAll(productArrayList);
                                     productAdapter.notifyDataSetChanged();
-                                    offset = (offset + limit);
+                                    offset = (offset + LIMIT);
                                     is_loading_grid = false;
-                                    txtLoading.setVisibility(View.GONE);
-                                }else{
+                                    //txtLoading.setVisibility(View.GONE);
+                                    layLoading.setVisibility(View.GONE);
+                                } else {
 
-                                    offset = (offset + limit);
+                                    offset = (offset + LIMIT);
                                     productAdapter1.addAll(productArrayList);
                                     productAdapter1.notifyDataSetChanged();
                                     is_loading_list = false;
-                                    txtLoading.setVisibility(View.GONE);
+                                    //txtLoading.setVisibility(View.GONE);
+                                    layLoading.setVisibility(View.GONE);
                                 }
 
                             }
@@ -354,7 +379,7 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                dialog.dismiss();
+                                util.hideAnimatedLogoProgressBar();
                                 util.showErrorDialog("No Product found.", "OK", "");
                             }
                         });
@@ -378,6 +403,25 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
             public void run() {
 
                 final String response = new RestClient(getActivity()).getFilterDataForCategory(category_id);
+                if(response.equals(RestClient.ERROR)) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            util.showErrorDialog(RestClient.ERROR_MESSAGE, "OK", "");
+                            util.hideAnimatedLogoProgressBar();
+                            return;
+                        }
+                    });
+                }else if(response.equals(RestClient.TIMEOUT_ERROR)) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            util.showErrorDialog(RestClient.TIMEOUT_ERROR_MESSAGE, "OK", "");
+                            util.hideAnimatedLogoProgressBar();
+                            return;
+                        }
+                    });
+                }
 
                 try{
                     final JSONObject jsonObject = new JSONObject(response);
@@ -400,6 +444,7 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
                                     filterValueList.setAdapter(filterChildAdapter);
                                     filterChildAdapter.notifyDataSetChanged();
                                 }
+                                getProducts();
 
 
                             }
@@ -428,41 +473,48 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
         }
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.lay_filter:
+                if(!util.isDailogueVisible()){
+                    drawerLayout.openDrawer(mDrawerFilterLayout);
+                    layFilterItems.setVisibility(View.VISIBLE);
+                    layDashboardItems.setVisibility(View.GONE);
+                    imgLogo.setVisibility(View.GONE);
+                    txtTitle.setVisibility(View.VISIBLE);
+                }
 
-                drawerLayout.openDrawer(mDrawerFilterLayout);
-                layFilterItems.setVisibility(View.VISIBLE);
-                layDashboardItems.setVisibility(View.GONE);
-                imgLogo.setVisibility(View.GONE);
-                txtTitle.setVisibility(View.VISIBLE);
 
                 break;
 
             case R.id.lay_switch_layout:
-                if(!is_loading_list &&  !is_loading_grid){
-                    if (isGrid) {
-                        if(offset == 0){
-                            getProducts();
-                            dialog.show();
+                if(!util.isDailogueVisible()){
+                    if(!is_loading_list &&  !is_loading_grid){
+                        if (isGrid) {
+                            if(offset == 0){
+                                getProducts();
+                                util.hideAnimatedLogoProgressBar();
+                            }
+                            isGrid = false;
+                            imgLaySwitch.setImageResource(R.drawable.grid_icon);
+                            productGrid.setVisibility(View.GONE);
+                            productList.setVisibility(View.VISIBLE);
+
+                        } else {
+                            isGrid = true;
+                            imgLaySwitch.setImageResource(R.drawable.list_icon);
+                            productGrid.setVisibility(View.VISIBLE);
+                            productList.setVisibility(View.GONE);
+
                         }
-                        isGrid = false;
-                        productGrid.setVisibility(View.GONE);
-                        productList.setVisibility(View.VISIBLE);
-
-                    } else {
-                        isGrid = true;
-                        productGrid.setVisibility(View.VISIBLE);
-                        productList.setVisibility(View.GONE);
-
                     }
                 }
+
                 break;
 
             case R.id.lay_sort:
+                if(!util.isDailogueVisible())
                     showShortDialog();;
                 break;
 
@@ -505,6 +557,7 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
         }
     }
 
+    @SuppressLint("NewApi")
     public void showShortDialog(){
 
         sortDialog = new MaterialDialog.Builder(getActivity()).cancelable(true).build();
@@ -576,7 +629,7 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
     }
 
     public void resetAdapters(){
-        limit=10;
+        LIMIT=10;
         offset=0;
         has_more_data = false;
         is_loading_grid =false;
@@ -587,7 +640,7 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
         productAdapter1.notifyDataSetChanged();
 
         getProducts();
-        dialog.show();
+        util.hideAnimatedLogoProgressBar();
 
     }
 
@@ -604,5 +657,14 @@ public class ProductListFragment extends Fragment implements View.OnClickListene
         }
         sortDialog.dismiss();
         resetAdapters();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(DashboardActivity.selectedFragment instanceof BannerDetailsFragment){
+            DashboardActivity.animateToggle(1, 0);
+        }
+
     }
 }

@@ -2,13 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="#dedede"
+    >
 
     <RelativeLayout
         android:id="@+id/lay_title"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary">
+        >
 
         <LinearLayout
             android:id="@+id/lay_back"
@@ -24,7 +25,7 @@
                 android:layout_marginLeft="5dp"
                 android:paddingBottom="15dp"
                 android:paddingTop="15dp"
-                android:src="@drawable/back_arrow" />
+                android:src="@drawable/back_arrow_icon" />
 
             <TextView
                 android:id="@+id/txt_title"
@@ -33,6 +34,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:ellipsize="marquee"
+                android:visibility="gone"
                 android:singleLine="true"
                 android:text="Title"
                 android:textColor="@color/drawer_arrow_second_color"
@@ -48,7 +50,6 @@
         android:id="@+id/image_full"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/lay_title"
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
         android:layout_marginTop="?attr/actionBarSize" />
@@ -57,7 +58,6 @@
         android:id="@+id/pager_fullscreen_glry"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/lay_title"
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
         android:layout_marginTop="?attr/actionBarSize" />

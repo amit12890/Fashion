@@ -6,9 +6,8 @@
     android:layout_width="@dimen/navdrawer_width"
     android:layout_height="50dp"
     android:layout_marginTop="1dp"
-    android:background="@drawable/holo_white_red_ripple"
     android:gravity="center_vertical"
-    android:paddingLeft="10dp">
+    android:paddingLeft="15dp">
 
     <ImageView
         android:id="@+id/img_home"

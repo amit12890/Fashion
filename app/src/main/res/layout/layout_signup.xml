@@ -121,16 +121,26 @@
                 app:et_dividerErrorColor="#D32F2F"
                 android:layout_marginTop="25dp" />
 
-            <Button
+        <LinearLayout
+            android:id="@+id/lay_login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@color/drawer_pressed"
+            android:layout_marginTop="40dp">
+
+            <com.rey.material.widget.Button
                 android:id="@+id/btn_register"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textColor="#FFFFFFFF"
                 android:textSize="16sp"
-                android:background="@drawable/button_red_white_ripple"
+                android:background="#00ffffff"
                 android:text="@string/register"
-                android:textAllCaps="false"
-                android:layout_marginTop="40dp" />
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
 
         </LinearLayout>
 

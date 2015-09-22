@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fashion</string>
+    <string name="app_name">Victoria Secret</string>
 
     <string name="hello_world">Hello Krish!</string>
 
@@ -39,4 +39,5 @@
     <string name="clear_all">Clear All</string>
     <string name="apply">Apply</string>
     <string name="filter">Filters</string>
+    <string name="title_activity_place">PlaceActivity</string>
 </resources>

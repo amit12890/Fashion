@@ -14,11 +14,17 @@ public class ProductDetails {
 
     public HashMap<String,String> product_additional_attribute = new HashMap<>();
 
-    public int product_in_stock=0,product_is_salable=0,product_has_gallery=0,product_has_option=0,product_rating_summery=0,product_review_count=0;
+    public int product_in_stock=0,product_is_salable=0,product_is_new = 0,product_has_gallery=0,product_has_option=0,product_rating_summery=0,product_review_count=0;
 
     public ArrayList<ProductOptions> productOptions = new ArrayList<>();
 
     public ArrayList<ProductGallery> productGalleries = new ArrayList<>();
+
+    public ArrayList<ProductSample> productSamples = new ArrayList<>();
+
+    public ArrayList<ProductLinks> productLinks = new ArrayList<>();
+
+    public ArrayList<Product> relatedProducts = new ArrayList<>();
 
 
 
@@ -41,5 +47,26 @@ public class ProductDetails {
     public class ProductGallery{
         public String image_code="",image_url_big="",image_url_small="",image_width="",
                 image_height="",image_id="",image_modification_time="";
+    }
+
+    public class ProductSample{
+        public String sample_label="",sample_label_item="",sample_url="";
+
+    }
+
+    public class ProductSampleItem{
+        public String sample__item_label,sample_url;
+    }
+
+    public class ProductLinks{
+        public String link_label="",link_code="",link_item_label="",link_item_value="",
+                link_item_formatted_price="",link_is_required="";
+
+    }
+
+    public class ProductLinksItem{
+
+        public String link_item_label,link_item_value,link_item_formatted_price;
+
     }
 }

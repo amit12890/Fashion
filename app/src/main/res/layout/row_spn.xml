@@ -9,4 +9,9 @@
     android:paddingLeft="5dp"
     android:paddingRight="16dp"
     android:textDirection="locale"
+    android:text="Text"
+    android:singleLine="true"
+    android:ellipsize="end"
+    android:background="#ffffff"
+    android:textColor="#212121"
     />

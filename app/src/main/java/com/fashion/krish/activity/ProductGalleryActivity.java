@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fashion.krish.R;
+import com.fashion.krish.utility.Utility;
 import com.liuguangqiang.swipeback.SwipeBackActivity;
 import com.liuguangqiang.swipeback.SwipeBackLayout;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -37,9 +38,10 @@ public class ProductGalleryActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         setContentView(R.layout.activity_product_image_fullscreen);
 
+        Utility.changeStatusBarColor(ProductGalleryActivity.this);
         imageLoader = ImageLoader.getInstance();
         options = new DisplayImageOptions.Builder().cacheInMemory(true)
                 .cacheOnDisc(true).resetViewBeforeLoading(true)
@@ -126,6 +128,6 @@ public class ProductGalleryActivity extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_top);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

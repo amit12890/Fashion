@@ -23,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.fashion.krish.AppController;
 import com.fashion.krish.R;
 import com.fashion.krish.RestClient;
 import com.fashion.krish.customview.FixedSpeedScroller;
@@ -70,7 +71,6 @@ public class ProductDetailsFragment extends Fragment {
     String product_code="";
     ArrayList<ImageView> dots;
     CirclePageIndicator circleIndicator;
-   //private GalleryPagerAdapter galleryPagerAdapter;
 
     ProductDetailsFragment(String product_id){
         this.product_id = product_id;
@@ -294,7 +294,7 @@ public class ProductDetailsFragment extends Fragment {
         tabs.setIndicatorColor(Color.WHITE);
         tabs.setDividerColor(Color.TRANSPARENT);
         tabs.setIndicatorHeight((int) Utility.convertDpToPixel(7, getActivity()));
-        tabs.setTabBackground(R.drawable.holo_red_white_ripple);
+        tabs.setBackgroundColor(Color.parseColor(AppController.SECONDARY_COLOR));
         tabs.setIndicatorColor(Color.WHITE);
 
         pagerDetail = (ViewPager) view.findViewById(R.id.product_details_pager);
@@ -402,7 +402,7 @@ public class ProductDetailsFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
             ProductDetails productDetails = productDetailsArray.get(0);
-            return ProductDetailsPagerFragment.newInstance(position,productDetails);
+            return ProductDetailsPagerFragment.newInstance(position,productDetails,titleArray.get(position));
         }
 
     }

@@ -48,9 +48,9 @@ public class CircleView extends View {
         super(context);
         init(); // Read all attributes
 
-        circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        circlePaint = new Paint();
         circlePaint.setStyle(Paint.Style.FILL);
-        circleStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        circleStrokePaint = new Paint();
         circleStrokePaint.setStyle(Paint.Style.STROKE);
         circleStrokePaint.setStrokeWidth(5);
         circleStrokePaint.setColor(circleStrokeColor);
@@ -103,7 +103,7 @@ public class CircleView extends View {
                 circleRadius = tempRadiusHeight;
         }
         // Remove 2 pixels for the stroke.
-        int circleDiameter = circleRadius * 2 - 2;
+        int circleDiameter = circleRadius * 2 ;
         // RectF(float left, float top, float right, float bottom)
         circleArc = new RectF(0, 0, circleDiameter, circleDiameter);
         int measuredHeight = measureHeight(heightMeasureSpec);

@@ -19,6 +19,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
         <com.rey.material.widget.TextView
@@ -32,6 +33,7 @@
             app:et_supportTextErrorColor="#ff0000"/>
 
         <View
+            android:id="@+id/date_time_separator"
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@color/actionbar_color"/>
@@ -50,13 +52,14 @@
 
 
     <View
+        android:id="@+id/date_time_separator_"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
         android:background="@color/actionbar_color"/>
 
     <TextView
-        android:id="@+id/txt_date_error"
+        android:id="@+id/txt_date_time_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -66,6 +69,7 @@
         />
 
     <View
+
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"

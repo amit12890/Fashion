@@ -32,7 +32,7 @@
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
-        <item name="color">@color/drawer_arrow_second_color</item>
+        <item name="color">#ffffff</item>
     </style>
 
     <style name="AppTheme.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
@@ -63,6 +63,7 @@
     <style name="OverflowMenu" parent="Base.Widget.AppCompat.Light.PopupMenu.Overflow">
         <!-- Required for pre-Lollipop. -->
         <item name="overlapAnchor">true</item>
+
     </style>
 
     <style name="OverFlowListVew" parent="Widget.AppCompat.ListView.DropDown">
@@ -84,5 +85,20 @@
         <item name="rd_rightPadding">1dp</item>
         <item name="rd_bottomPadding">2dp</item>
     </style>
+
+    <style name="FacebookLoginButton">
+        <item name="android:textSize">5sp</item>
+        <item name="android:background">@drawable/facebook_icon</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="RatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/rating_bar</item>
+        <item name="android:minHeight">30dp</item>
+        <item name="android:maxHeight">30dp</item>
+    </style>
+
 
 </resources>

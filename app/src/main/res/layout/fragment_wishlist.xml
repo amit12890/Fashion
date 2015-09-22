@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.fashion.krish.customview.SlidingRelativeLayout
+    android:id="@+id/lay_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:id="@+id/lay_header"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/lay_clear_list"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clear List"
+                android:textColor="#000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:background="#D0CECE" />
+
+        <LinearLayout
+            android:id="@+id/lay_switch_layout"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/holo_red_white_ripple"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_switch_lay"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/list_icon" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#cccccc"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Loading"
+        android:textSize="25sp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/lay_loading"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="50dp"
+        android:visibility="gone"/>
+
+    <GridView
+        android:id="@+id/gridview_product"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/lay_loading"
+        android:layout_below="@+id/lay_header"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp"
+        android:numColumns="2"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth"/>
+
+
+    <ListView
+        android:id="@+id/listview_product"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/lay_loading"
+        android:layout_below="@+id/lay_header"
+        android:layout_margin="5dp"
+        android:divider="@null"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:visibility="gone"/>
+
+
+
+
+</com.fashion.krish.customview.SlidingRelativeLayout>

@@ -5,5 +5,6 @@ package com.fashion.krish.model;
  */
 public class HomeBanners {
 
-    public String image,type;
+    public String banner_image="",banner_type="",banner_entity_id="",banner_action_type="",
+            banner_action_attribute="",banner_content_type="";
 }

@@ -18,18 +18,20 @@ package com.fashion.krish.fragment;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.fashion.krish.AppController;
 import com.fashion.krish.R;
+import com.fashion.krish.activity.ProductDetailActivity;
 import com.fashion.krish.model.Product;
-import com.fashion.krish.utility.Utility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -63,9 +65,9 @@ public class ProductCardFragment extends Fragment {
 		imageLoader = ImageLoader.getInstance();
 		options = new DisplayImageOptions.Builder().cacheInMemory(true)
 				.cacheOnDisc(true).resetViewBeforeLoading(true)
-				.showImageForEmptyUri(R.drawable.logo)
-				.showImageOnFail(R.drawable.logo)
-				.showImageOnLoading(R.drawable.logo).build();
+				.showImageForEmptyUri(R.drawable.placeholder)
+				.showImageOnFail(R.drawable.placeholder)
+				.showImageOnLoading(R.drawable.placeholder).build();
 
 	}
 
@@ -81,12 +83,38 @@ public class ProductCardFragment extends Fragment {
 		//LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		for(int i = 0; i<productList.size(); i++){
 			View productView = infalInflater.inflate(R.layout.product_layout, null);
-			Product product = productList.get(i);
+
+			final Product product = productList.get(i);
 			ImageView productImage = (ImageView) productView.findViewById(R.id.img_product_main);
-			imageLoader.displayImage(product.product_icon, productImage,options);
+			imageLoader.displayImage(product.product_icon, productImage, options);
 			((TextView) productView.findViewById(R.id.txt_regular_price)).setText(product.product_price_regular);
 			((TextView) productView.findViewById(R.id.txt_product_name)).setText(product.product_name);
+			((RatingBar) productView.findViewById(R.id.rating_product)).setRating((product.product_rating_summery) / 2);
+			ImageView productTag = (ImageView) productView.findViewById(R.id.img_product_tag);
+			if(product.product_is_new == 1 && product.product_is_salable == 1)
+				productTag.setImageResource(R.drawable.new_sale_tag);
+			else if(product.product_is_new == 1 && product.product_is_salable == 0)
+				productTag.setImageResource(R.drawable.new_tag);
+			else if(product.product_is_new == 0 && product.product_is_salable == 1)
+				productTag.setImageResource(R.drawable.sale_tag);
+			else if(product.product_is_new == 0 && product.product_is_salable == 0)
+				productTag.setVisibility(View.GONE);
+
 			productListLay.addView(productView);
+
+			productView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent i = new Intent(getActivity(), ProductDetailActivity.class);
+					i.putExtra("product_id", product.product_entity_id);
+					i.putExtra("product_sku", product.product_sku);
+					i.putExtra("product_name", product.product_name);
+					i.putExtra("product_price_regular", product.product_price_regular);
+					i.putExtra("product_rate", product.product_rating_summery);
+					i.putExtra("category_name", "Home");
+					startActivity(i);
+				}
+			});
 		}
 
 		return baseView;

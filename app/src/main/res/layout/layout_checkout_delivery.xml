@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lay_checkout_delivery"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/lay_add_new_address">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:padding="10dp">
+            <LinearLayout
+                android:id="@+id/lay_my_address_child_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/lay_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_card"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/txt_select_address_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Select Shipping Address"
+                        android:textColor="#212121"
+                        android:textSize="18sp" />
+
+                    <RelativeLayout
+                        android:id="@+id/lay_add_new_address"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true">
+
+                        <com.fashion.krish.customview.CircleImageView
+                            android:id="@+id/img_add"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="#cccccc"
+                            app:border_overlay="false"
+                            app:border_width="0dp" />
+
+                        <TextView
+                            android:id="@+id/txt_add"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="#ffffff"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/txt_p_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_select_address_label"
+                        android:layout_marginTop="10dp"
+                        android:text="Person Full Name"
+                        android:textColor="#212121"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_full_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_p_name"
+                        android:text="Person Full Address"
+                        android:textColor="#212121"
+                        android:textSize="16sp" />
+
+                    <com.rey.material.widget.Spinner
+                        android:id="@+id/spin_address"
+                        style="@style/Material.Widget.Spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_full_address"
+                        android:layout_marginTop="15dp"
+                        app:rd_style="@style/Material.Drawable.Ripple.Wave" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/lay_shipping_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/background_card"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/txt_select_shipping_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Shipping Methods"
+                        android:textColor="#212121"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:id="@+id/lay_shipping_methods"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_select_shipping_label"
+                        android:orientation="vertical" />
+
+                    <LinearLayout
+                        android:id="@+id/lay_continue_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/lay_shipping_methods"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/drawer_pressed"
+                        android:orientation="horizontal">
+
+                        <com.rey.material.widget.Button
+                            android:id="@+id/btn_continue"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00ffffff"
+                            android:text="Continue"
+                            android:textAllCaps="false"
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="16sp"
+                            android:translationZ="2dp" />
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+        <include layout="@layout/layout_add_address" />
+
+    </ViewFlipper>
+
+
+</LinearLayout>
+
